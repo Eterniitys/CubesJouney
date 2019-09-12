@@ -7,6 +7,7 @@ const ACCEL = 5
 var vel = Vector2()
 export(int) var max_speed = 200
 var dirx = 0
+var life = 100
 
 func _ready():
 	randomize()
@@ -45,3 +46,7 @@ func movement_loop():
 	if is_on_wall():
 		$anim.play("idle")
 
+func hit(damage):
+	life -= damage
+	if life <= 0:
+		queue_free()

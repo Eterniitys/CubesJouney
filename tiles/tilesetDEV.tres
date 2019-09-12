@@ -16,7 +16,7 @@ extents = Vector2( 32, 32 )
 0/navigation_offset = Vector2( 32, 32 )
 0/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
+"one_way": true,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 32, 32 )
