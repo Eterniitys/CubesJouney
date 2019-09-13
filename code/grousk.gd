@@ -5,7 +5,7 @@ const UP = Vector2(0,-1)
 const ACCEL = 5
 
 var vel = Vector2()
-export(int) var max_speed = 200
+export(int) var max_speed = 500
 var dirx = 0
 var life = 100
 
@@ -23,7 +23,8 @@ func _on_time_timeout():
 	
 func _physics_process(delta):
 	vel.y += GRAVITY * delta
-	movement_loop()
+	if $anim.current_animation != "hit":
+		movement_loop()
 
 # warning-ignore:return_value_discarded
 	move_and_slide(vel, UP) # UP indique la direction du plafond
@@ -43,10 +44,13 @@ func movement_loop():
 			vel.x = lerp(vel.x ,0, 0.2)
 			$anim.play("idle")
 
+
 	if is_on_wall():
-		$anim.play("idle")
+		dirx *= -1
+		vel.x = 0
 
 func hit(damage):
+	$anim.play("hit")
 	life -= damage
 	if life <= 0:
 		queue_free()

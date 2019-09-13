@@ -1,7 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://code/player.gd" type="Script" id=1]
 [ext_resource path="res://img/Tuto/spoony.png" type="Texture" id=2]
+[ext_resource path="res://code/shoot_delay.gd" type="Script" id=3]
+
+
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 16.1963
@@ -55,7 +58,7 @@ tracks/0/keys = {
 "values": [ 9, 10 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "shoot"
 length = 0.2
 step = 0.05
@@ -72,8 +75,7 @@ tracks/0/keys = {
 "values": [ 2, 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "walk"
+[sub_resource type="Animation" id=6]
 length = 0.45
 loop = true
 step = 0.15
@@ -109,9 +111,8 @@ centered = false
 hframes = 12
 region_rect = Rect2( 0, 0, 192, 32 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-visible = false
-position = Vector2( 1, -65 )
+[node name="cam" type="Camera2D" parent="."]
+position = Vector2( 1, 0 )
 current = true
 smoothing_enabled = true
 
@@ -120,8 +121,14 @@ root_node = NodePath(".")
 anims/idle = SubResource( 2 )
 anims/jump_down = SubResource( 3 )
 anims/jump_up = SubResource( 4 )
-anims/shoot = SubResource( 6 )
-anims/walk = SubResource( 5 )
+anims/shoot = SubResource( 5 )
+anims/walk = SubResource( 6 )
 
 [node name="muzzle" type="Position2D" parent="."]
 position = Vector2( 20, 8 )
+
+[node name="shoot_delay" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+script = ExtResource( 3 )
+[connection signal="timeout" from="shoot_delay" to="shoot_delay" method="_on_shoot_delay_timeout"]

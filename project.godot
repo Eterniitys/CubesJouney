@@ -57,10 +57,16 @@ shoot={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="env"
+2d_physics/layer_2="player"
+2d_physics/layer_3="enemy"
+2d_physics/layer_4="bullet"
+
 [rendering]
 
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=1
 quality/2d/use_pixel_snap=true
-environment/default_clear_color=Color( 0.0509804, 0.462745, 0.788235, 1 )
 environment/default_environment="res://default_env.tres"
