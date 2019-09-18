@@ -9,9 +9,11 @@ var vel = Vector2()
 export(int) var max_speed = 300
 
 # Weapons
-var bullet = preload("res://scene/bullet.tscn")
+var bullet = preload("res://scene/objects/bullet.tscn")
 var dir_bullet = 1
 var can_shoot = true
+
+var mouse_pos = Vector2()
 
 func _ready():
 	pass
@@ -25,11 +27,16 @@ func _physics_process(delta):
 	vel.y += GRAVITY * delta
 
 	vel = move_and_slide(vel, UP) # UP indique la direction du plafond
+	
+	$sprite_bras.look_at(mouse_pos)
 
 func movement_loop():
+	mouse_pos = get_global_mouse_position() # Vector2
+	var ligne_bullet = mouse_pos - $sprite_bras/muzzle.global_position
+	var rot = ligne_bullet.angle()
 	
-	var right = Input.is_action_pressed("ui_right")
-	var left = Input.is_action_pressed("ui_left")
+	var right = Input.is_action_pressed("right_cubi")
+	var left = Input.is_action_pressed("left_cubi")
 	var shoot = Input.is_action_pressed("shoot")
 	var dirx = int(right) - int(left)
 	match dirx: # switch
@@ -37,16 +44,19 @@ func movement_loop():
 			dir_bullet = 1
 			vel.x = min(vel.x + ACCEL, max_speed)
 			$Sprite.flip_h = false
-			$muzzle.position.x = 20
+			$sprite_bras.flip_v = false
+			$sprite_bras.position.x = -5
+			$sprite_bras.flip_v = false
 		-1: # Gauche
 			dir_bullet = -1
 			vel.x = max(vel.x - ACCEL, -max_speed)
 			$Sprite.flip_h = true
-			$muzzle.position.x = -20
+			$sprite_bras.flip_v = true
+			$sprite_bras.position.x = 5
 		_: # Both / Nothing
 			vel.x = lerp(vel.x ,0, 0.2)
 
-	var jump = Input.is_action_just_pressed("ui_up")
+	var jump = Input.is_action_just_pressed("jump_cubi")
 	if jump == true and is_on_floor():
 		vel.y = -600
 
@@ -55,7 +65,7 @@ func movement_loop():
 		get_node("shoot_delay").start()
 		$anim.play("shoot")
 		var b = bullet.instance()
-		b.start($muzzle.global_position, dir_bullet)
+		b.start($sprite_bras/muzzle.global_position, rot)
 		get_parent().add_child(b)
 
 func animation_loop():

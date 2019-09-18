@@ -4,14 +4,9 @@ var damage = 25
 var vel
 
 func start(pos, dir):
+	rotation = dir
 	position = pos
-	vel = Vector2(speed*dir,0)
-	if dir == 1:
-		$Sprite.flip_h = false
-		$CollisionShape2D.rotation_degrees = 90
-	else:
-		$Sprite.flip_h = true
-		$CollisionShape2D.rotation_degrees = 270
+	vel = Vector2(speed,0).rotated(rotation)
 
 
 func _process(delta):
