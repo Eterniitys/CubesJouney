@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://code/Players.gd" type="Script" id=1]
+[ext_resource path="res://code/cubi.gd" type="Script" id=2]
+[ext_resource path="res://img/Tilemap_BoxDev.png" type="Texture" id=3]
+[ext_resource path="res://code/cuba.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30, 30 )
+
+[node name="Players" type="Node2D"]
+editor/display_folded = true
+position = Vector2( 1701.87, 791.438 )
+script = ExtResource( 1 )
+
+[node name="cubi" type="KinematicBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( -45, 45 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="cubi"]
+position = Vector2( -1.51992e-05, -1.99676e-05 )
+scale = Vector2( 0.937501, 0.937499 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 192, 64, 64, 64 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cubi"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="cuba" type="KinematicBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 45, 45 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="cuba"]
+position = Vector2( -1.51992e-05, -1.99676e-05 )
+scale = Vector2( 0.937501, 0.937499 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 128, 64, 64, 64 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cuba"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="cam" type="Camera2D" parent="."]
+current = true
