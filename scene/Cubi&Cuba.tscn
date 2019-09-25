@@ -9,7 +9,6 @@
 extents = Vector2( 30, 30 )
 
 [node name="Players" type="Node2D"]
-editor/display_folded = true
 position = Vector2( 1701.87, 791.438 )
 script = ExtResource( 1 )
 
@@ -17,9 +16,6 @@ script = ExtResource( 1 )
 editor/display_folded = true
 position = Vector2( -45, 45 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Sprite" type="Sprite" parent="cubi"]
 position = Vector2( -1.51992e-05, -1.99676e-05 )
@@ -36,9 +32,6 @@ shape = SubResource( 1 )
 editor/display_folded = true
 position = Vector2( 45, 45 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Sprite" type="Sprite" parent="cuba"]
 position = Vector2( -1.51992e-05, -1.99676e-05 )

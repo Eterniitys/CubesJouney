@@ -57,7 +57,7 @@ tracks/0/keys = {
 "values": [ 5, 7 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -73,7 +73,7 @@ tracks/0/keys = {
 "values": [ 3, 2, 4, 2 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "recul"
 length = 0.21
 tracks/0/type = "value"
@@ -101,7 +101,6 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -32, -32 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
 centered = false
 vframes = 2
@@ -117,25 +116,23 @@ root_node = NodePath(".")
 anims/idle = SubResource( 2 )
 anims/jump_down = SubResource( 3 )
 anims/jump_up = SubResource( 4 )
-anims/walk = SubResource( 6 )
+anims/walk = SubResource( 5 )
 
 [node name="shoot_delay" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.1
 one_shot = true
 script = ExtResource( 3 )
 
 [node name="sprite_bras" type="Sprite" parent="."]
 position = Vector2( -5, 9 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 10
-frame = 9
+frame = 8
 
 [node name="muzzle" type="Position2D" parent="sprite_bras"]
 position = Vector2( 28.0769, -2.04323 )
-scale = Vector2( 1, 1 )
 
 [node name="anim_bras" type="AnimationPlayer" parent="sprite_bras"]
-anims/recul = SubResource( 7 )
+anims/recul = SubResource( 6 )
 [connection signal="timeout" from="shoot_delay" to="shoot_delay" method="_on_shoot_delay_timeout"]
