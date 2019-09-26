@@ -1,9 +1,37 @@
 extends Node2D
 
+export(bool) var old_scale = false
+# Cubi variables
+onready var cubi = $cubi
+export(float) var cubi_min_x = 0.5
+export(float) var cubi_min_y = 0.5
+export(float) var cubi_delta_x = 0.5
+export(float) var cubi_delta_y = 0.5
+
+# Cuba variables
+onready var cuba = $cuba
+export(float) var cuba_min_x = 0.5
+export(float) var cuba_min_y = 0.5
+export(float) var cuba_delta_x = 0.5
+export(float) var cuba_delta_y = 0.5
+
 func _ready():
-	pass
+	cubi.old_scale = old_scale
+	cuba.old_scale = old_scale
+#	pass
 
 func _process(delta):
+	# set scale Cubi
+	cubi.delta_scale_x = cubi_delta_x
+	cubi.delta_scale_y = cubi_delta_y
+	cubi.scale_min_x = cubi_min_x
+	cubi.scale_min_y = cubi_min_y
+	
+	# set scale Cuba
+	cuba.delta_scale_x = cuba_delta_x
+	cuba.delta_scale_y = cuba_delta_y
+	cuba.scale_min_x = cuba_min_x
+	cuba.scale_min_y = cuba_min_y
 	
 	replace_cam()
 
