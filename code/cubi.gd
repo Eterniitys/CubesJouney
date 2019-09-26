@@ -20,7 +20,7 @@ var delta_scale_y
 
 func _ready():
 	shadow = shadow_preload.instance()
-	shadow.get_node("sprite").region_rect = $sprite.region_rect
+	shadow.get_node("sprite").region_rect = $Sprite.region_rect
 	shadow.set_collision_layer_bit(10,true)
 
 func _physics_process(delta):
