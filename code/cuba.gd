@@ -6,19 +6,22 @@ const MAX_SPEED = 300
 
 var vel = Vector2()
 var etat = "normal"
+export(float) var delta_scale = 0.5
 
 func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
 	# basique move and gravity
-	vel = move_and_slide(vel, UP)
 	vel.y += GRAVITY * delta
+	
 	# moves
 	movements(delta)
 	
 	#transform
 	transform(delta)
+	
+	vel = move_and_slide(vel, UP)
 
 func movements(delta):
 	var left = Input.is_action_pressed("left_cuba")
@@ -45,8 +48,8 @@ func transform(delta):
 				etat = "normal"			
 			else :
 				etat = "down"
-			scale.x += 0.5
-			scale.y -= 0.5
+			scale.x += delta_scale
+			scale.y -= delta_scale
 
 	if Input.is_action_just_pressed("transform_up_cuba"):
 		if etat != "up":
@@ -54,6 +57,6 @@ func transform(delta):
 				etat = "normal"			
 			else :
 				etat = "up"
-			scale.x -= 0.5
-			scale.y += 0.5
+			scale.x -= delta_scale
+			scale.y += delta_scale
 	

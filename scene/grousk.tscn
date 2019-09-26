@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://code/grousk.gd" type="Script" id=1]
+[ext_resource path="res://code/cuba.gd" type="Script" id=1]
 [ext_resource path="res://img/Tuto/Enemys/grousk.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 23.0
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 24.9724, 22.3234 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "hit"
@@ -66,8 +66,7 @@ hframes = 5
 frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/hit = SubResource( 2 )
