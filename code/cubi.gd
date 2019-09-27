@@ -33,7 +33,7 @@ func _physics_process(delta):
 	else:
 		transform(delta)
 	# Shadow
-	if Input.is_action_just_pressed("shadow_cubi"):
+	if Input.is_action_just_pressed("shadow_cuba"):
 		call_shadow()
 	
 	vel = move_and_slide(vel, UP)

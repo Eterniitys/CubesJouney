@@ -24,7 +24,7 @@ collision_mask = 2049
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="cubi"]
-position = Vector2( -1.51992e-05, -1.99676e-05 )
+position = Vector2( -1.51992e-005, -1.99676e-005 )
 scale = Vector2( 0.937501, 0.937499 )
 texture = ExtResource( 3 )
 region_enabled = true
@@ -40,7 +40,7 @@ collision_mask = 1025
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="cuba"]
-position = Vector2( -0.000137329, -1.90735e-05 )
+position = Vector2( -0.000137329, -1.90735e-005 )
 scale = Vector2( 0.937501, 0.937499 )
 texture = ExtResource( 3 )
 region_enabled = true
