@@ -37,7 +37,10 @@ func _physics_process(delta):
 		call_shadow()
 	
 	vel = move_and_slide(vel, UP)
-
+    
+	# Travers cube when press f/j
+	travers()
+		
 func movements(delta):
 	var left = Input.is_action_pressed("left_cuba")
 	var right = Input.is_action_pressed("right_cuba")
@@ -54,12 +57,19 @@ func movements(delta):
 	if jump and is_on_floor():
 		vel.y = -600
 
+func travers ():
+	if Input.is_action_just_pressed("travers_cuba"):
+		set_collision_mask_bit(5,false)
+	if Input.is_action_just_released("travers_cuba"):
+		set_collision_mask_bit(5,true)	
+
 func call_shadow():
 	shadow.scale = scale
 	shadow.position = position
 	get_parent().add_child(shadow)
 
 func transform_alt(delta):
+	
 	if Input.is_action_just_pressed("transform_down_cuba"):
 		if etat != "down":	
 			if etat == "up":
@@ -70,6 +80,7 @@ func transform_alt(delta):
 			scale.y -= delta_scale_y
 
 	if Input.is_action_just_pressed("transform_up_cuba"):
+		vel.y = -400
 		if etat != "up":
 			if etat == "down":
 				etat = "normal"			
@@ -78,8 +89,12 @@ func transform_alt(delta):
 			scale.x -= delta_scale_x
 			scale.y += delta_scale_y
 
-	
+
 func transform(delta):
+	
+	if Input.is_action_just_pressed("transform_up_cuba") and is_on_floor():
+		vel.y = -337
+		
 	if Input.is_action_pressed("transform_down_cuba"):
 		scale.x = lerp (scale.x, scale_min_x, scale_speed)
 		scale.y = lerp (scale.y, scale_min_y, scale_speed)
