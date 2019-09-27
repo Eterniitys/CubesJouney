@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://code/impact.gd" type="Script" id=1]
+
+[sub_resource type="Curve" id=1]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 19.008 ), 0.0, 1427.76, 0, 0, Vector2( 0.996732, 25.344 ), 1538.3, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.459259, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.957031, 0.843536, 0.456085, 1, 1, 0.231373, 0.0470588, 0.815686 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -1.95234, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+trail_divisor = 3
+flag_disable_z = true
+spread = 120.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 10.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle_curve = SubResource( 2 )
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 4 )
+
+[node name="impact" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+emitting = false
+amount = 30
+lifetime = 1.5
+one_shot = true
+speed_scale = 3.0
+explosiveness = 0.79
+randomness = 1.0
+process_material = SubResource( 7 )

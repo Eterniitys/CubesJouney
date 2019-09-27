@@ -2,8 +2,9 @@
 
 [ext_resource path="res://code/scene.gd" type="Script" id=1]
 [ext_resource path="res://tiles/tilesetDEV.tres" type="TileSet" id=2]
-[ext_resource path="res://scene/player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scene/grousk.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scene/tuto/player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scene/tuto/grousk.tscn" type="PackedScene" id=4]
+
 
 [node name="defaultScene" type="Node2D"]
 script = ExtResource( 1 )

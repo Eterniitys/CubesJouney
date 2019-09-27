@@ -14,7 +14,6 @@ extents = Vector2( 30, 30 )
 [node name="Players" type="Node2D"]
 position = Vector2( 1705, 780 )
 script = ExtResource( 1 )
-old_scale = true
 
 [node name="cubi" type="KinematicBody2D" parent="."]
 editor/display_folded = true
@@ -24,13 +23,14 @@ collision_mask = 2049
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="cubi"]
-position = Vector2( -1.51992e-005, -1.99676e-005 )
+position = Vector2( -1.51992e-05, -1.99676e-05 )
 scale = Vector2( 0.937501, 0.937499 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 192, 64, 64, 64 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cubi"]
+visible = false
 shape = SubResource( 1 )
 
 [node name="cuba" type="KinematicBody2D" parent="."]
@@ -40,7 +40,7 @@ collision_mask = 1025
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="cuba"]
-position = Vector2( -0.000137329, -1.90735e-005 )
+position = Vector2( -0.000137329, -1.90735e-05 )
 scale = Vector2( 0.937501, 0.937499 )
 texture = ExtResource( 3 )
 region_enabled = true
