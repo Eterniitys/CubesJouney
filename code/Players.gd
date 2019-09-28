@@ -3,17 +3,17 @@ extends Node2D
 export(bool) var old_scale = false
 # Cubi variables
 onready var cubi = $cubi
-export(float) var cubi_min_x = 0.5
-export(float) var cubi_min_y = 0.5
-export(float) var cubi_delta_x = 0.5
-export(float) var cubi_delta_y = 0.5
+export(float) var cubi_min_x = 1
+export(float) var cubi_min_y = 1
+export(float) var cubi_delta_x = -0.65
+export(float) var cubi_delta_y = 2
 
 # Cuba variables
 onready var cuba = $cuba
-export(float) var cuba_min_x = 0.5
-export(float) var cuba_min_y = 0.5
-export(float) var cuba_delta_x = 0.5
-export(float) var cuba_delta_y = 0.5
+export(float) var cuba_min_x = 1
+export(float) var cuba_min_y = 1
+export(float) var cuba_delta_x = 2
+export(float) var cuba_delta_y = -0.65
 
 func _ready():
 	cubi.old_scale = old_scale
