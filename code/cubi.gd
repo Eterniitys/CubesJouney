@@ -3,10 +3,11 @@ extends KinematicBody2D
 const UP = Vector2.UP
 const GRAVITY = 1000
 const MAX_SPEED = 300
+const JUMP_HEIGH = 550
 # Velocity
 var vel = Vector2()
 # Shadow
-var shadow_preload = preload("res://scene/objects/cubx_shadow.tscn")
+#var shadow_preload = preload("res://scene/objects/cubx_shadow.tscn")
 var shadow
 # TODO del
 var old_scale = false
@@ -19,9 +20,8 @@ var delta_scale_x
 var delta_scale_y
 
 func _ready():
-	shadow = shadow_preload.instance()
-	shadow.get_node("sprite").region_rect = $Sprite.region_rect
-	shadow.set_collision_layer_bit(10,true)
+	#shadow = shadow_preload.instance()
+	shadow = get_parent().get_node("cubx_shadow")
 
 func _physics_process(delta):
 	vel.y += GRAVITY * delta
@@ -33,7 +33,7 @@ func _physics_process(delta):
 	else:
 		transform(delta)
 	# Shadow
-	if Input.is_action_just_pressed("shadow_cuba"):
+	if Input.is_action_just_pressed("shadow_cubi"):
 		call_shadow()
 	
 	vel = move_and_slide(vel, UP)
@@ -55,7 +55,7 @@ func movements(delta):
 	
 	var jump = Input.is_action_just_pressed("jump_cubi")
 	if jump and is_on_floor():
-		vel.y = -600
+		vel.y = -JUMP_HEIGH
 		
 func travers ():
 	if Input.is_action_just_pressed("travers_cubi"):
@@ -64,9 +64,12 @@ func travers ():
 		set_collision_mask_bit(5,true)	
 		
 func call_shadow():
+	shadow.set_collision_layer_bit(11,false)
+	shadow.get_node("sprite").region_rect = $Sprite.region_rect
+	shadow.set_collision_layer_bit(10,true)
 	shadow.scale = scale
 	shadow.position = position
-	get_parent().add_child(shadow)
+	#get_parent().add_child(shadow)
 
 func transform_alt(delta):
 	if Input.is_action_just_pressed("transform_down_cubi"):
