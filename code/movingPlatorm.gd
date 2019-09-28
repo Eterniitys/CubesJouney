@@ -1,25 +1,26 @@
-extends KinematicBody2D
+extends Node2D
 
-const SPEED = 100
+export(int) var duration = 10
+onready var aiming_pos = $pos_1.position
 
-var vel = Vector2()
-var compteur = 0
-
+export var transition = 1
+export var t_ease = 1
 
 func _ready():
-	pass # Replace with function body.
+	move()
 
-func _process(delta):
-	compteur +=1
-	
-	if compteur <= -10:
-		vel.x = -SPEED
-	elif compteur >= 10:
-		vel.x = SPEED
-	else:
-		vel.x = 0
-	
-	if compteur == 100:
-		compteur *= -1
-		
-	vel = move_and_slide(vel)
+func move():
+	$platform_t/Tween.interpolate_property(
+	self,
+	"position",
+	position,
+	position + aiming_pos,
+	duration,
+	transition,
+	t_ease
+	)
+	$platform_t/Tween.start()
+
+func _on_Tween_tween_completed(object, key):
+	aiming_pos *= -1
+	move()

@@ -131,10 +131,8 @@ travers_cubi={
 [layer_names]
 
 2d_physics/layer_1="env"
-2d_physics/layer_2="player"
-2d_physics/layer_3="enemy"
-2d_physics/layer_4="bullet"
-2d_physics/layer_5="curseur"
+2d_physics/layer_2="moving_platforms"
+2d_physics/layer_6="crossable_platform"
 2d_physics/layer_11="Cubi"
 2d_physics/layer_12="Cuba"
 
