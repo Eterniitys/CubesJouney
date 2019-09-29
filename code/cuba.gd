@@ -10,6 +10,7 @@ var vel = Vector2()
 var shadow_preload = preload("res://scene/objects/cubx_shadow.tscn")
 var shadow
 # TODO del
+var cubi_inside = false
 var old_scale = false
 var etat = "normal"
 # Scaling cube datas
@@ -24,7 +25,8 @@ func _ready():
 	shadow = get_parent().get_node("cubx_shadow")
 
 func _physics_process(delta):
-	vel.y += GRAVITY * delta
+	if !is_on_floor():
+		vel.y += GRAVITY * delta
 	# Moves
 	movements(delta)
 	# Transform
@@ -36,7 +38,18 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("shadow_cuba"):
 		call_shadow()
 	
-	vel = move_and_slide(vel, UP, false, 4, 0.785398, false)
+#	if !cubi_inside :
+#		for i in get_slide_count():
+#			var collision = get_slide_collision(i)
+#			if collision.collider.name == "cubi" and collision.normal == UP:
+#				cubi_inside = true
+#				get_parent().remove_child(collision.collider)
+#				self.add_child(collision.collider)
+#				print("p_c:",get_parent().get_child_count(),"  self:",get_child_count())
+	
+	
+	#vel = move_and_slide(vel, UP)
+	vel = move_and_slide_with_snap(vel,Vector2.DOWN , UP)
 	# Travers cube when press f/j
 	travers()
 		
@@ -60,7 +73,7 @@ func travers ():
 	if Input.is_action_just_pressed("travers_cuba"):
 		set_collision_mask_bit(5,false)
 	if Input.is_action_just_released("travers_cuba"):
-		set_collision_mask_bit(5,true)	
+		set_collision_mask_bit(5,true)
 
 func call_shadow():
 	shadow.set_collision_layer_bit(10,false)

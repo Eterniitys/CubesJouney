@@ -9,13 +9,13 @@
 [ext_resource path="res://img/ugly button.png" type="Texture" id=7]
 [ext_resource path="res://code/platorm_2p.gd" type="Script" id=8]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64, 33 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 3.16541 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 64, 33 )
 
 [node name="Node2D" type="Node2D"]
@@ -37,13 +37,14 @@ format = 1
 tile_data = PoolIntArray( 917555, 0, 0, 917556, 0, 0, 917557, 0, 0, 1048627, 0, 0, 1048628, 0, 0, 1048629, 0, 0, 1179665, 0, 0, 1179666, 0, 0, 1179667, 0, 0, 1179699, 0, 0, 1179700, 0, 0, 1179701, 0, 0, 1245188, 0, 0, 1245189, 0, 0, 1245190, 0, 0, 1245191, 0, 0, 1245192, 0, 0, 1310771, 0, 0, 1310772, 0, 0, 1310773, 0, 0, 1376260, 0, 0, 1376261, 0, 0, 1376262, 0, 0, 1376263, 0, 0, 1376264, 0, 0, 1441843, 0, 0, 1441844, 0, 0, 1441845, 0, 0, 3407894, 0, 0, 3407895, 0, 0, 3407896, 0, 0, 3407897, 0, 0, 3407898, 0, 0 )
 
 [node name="Players" parent="." instance=ExtResource( 3 )]
-position = Vector2( 6070, 2991 )
+position = Vector2( 2528, 865 )
 cubi_delta_x = 2.0
 cubi_delta_y = -0.65
 cuba_delta_x = -0.65
 cuba_delta_y = 2.0
 
 [node name="platform_b2p" parent="." instance=ExtResource( 4 )]
+duration = 3
 t_ease = 3
 
 [node name="platform_b2p2" type="Node2D" parent="."]
@@ -67,7 +68,7 @@ region_enabled = true
 region_rect = Rect2( 64, 128, 128, 64 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platform_b2p2/platform_t"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Tween" type="Tween" parent="platform_b2p2/platform_t"]
 
@@ -84,17 +85,15 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platform_b2p2/button"]
 position = Vector2( 0, 28.8346 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="platform_b2p2/button"]
 texture = ExtResource( 7 )
 hframes = 2
 
 [node name="platform_2p_2" type="Node2D" parent="."]
-editor/display_folded = true
-position = Vector2( 7936, 2465 )
+position = Vector2( 2368, 993 )
 script = ExtResource( 8 )
-duration = 15
 transition = 0
 t_ease = 2
 
@@ -113,12 +112,12 @@ region_enabled = true
 region_rect = Rect2( 64, 128, 128, 64 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platform_2p_2/platform_t"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="Tween" type="Tween" parent="platform_2p_2/platform_t"]
 
 [node name="pos_1" type="Position2D" parent="platform_2p_2"]
-position = Vector2( -4352, -1536 )
+position = Vector2( -256, -224 )
 
 [node name="platform_2p" type="Node2D" parent="."]
 editor/display_folded = true
@@ -143,7 +142,7 @@ region_enabled = true
 region_rect = Rect2( 64, 128, 128, 64 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platform_2p/platform_t"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="Tween" type="Tween" parent="platform_2p/platform_t"]
 

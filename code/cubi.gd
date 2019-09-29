@@ -36,7 +36,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("shadow_cubi"):
 		call_shadow()
 	
-	vel = move_and_slide(vel, UP)
+	vel = move_and_slide(vel, UP,false,1000)
 	
 	# Travers cube when press f/j
 	travers()

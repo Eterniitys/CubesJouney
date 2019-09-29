@@ -33,7 +33,7 @@ func _process(delta):
 	cuba.scale_min_x = cuba_min_x
 	cuba.scale_min_y = cuba_min_y
 	
-	replace_cam()
+	#replace_cam()
 
 func replace_cam():
 	var cuba_pos = $cuba.global_position
