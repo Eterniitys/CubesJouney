@@ -1,6 +1,6 @@
 extends Node2D
 
-export(int) var duration = 1
+export(int) var duration = 5
 onready var aiming_pos = $pos_1.position
 
 export var transition = 1
@@ -23,7 +23,7 @@ func move():
 	t_ease
 	)
 	$platform_t/Tween.start()
-	
+
 func _on_Tween_tween_completed(object, key):
 		
 	if (etat in [UP,DOWN]):
@@ -34,11 +34,13 @@ func _on_Tween_tween_completed(object, key):
 				move()
 			DOWN : 
 				etat = ISDOWN
-		
-		
-		
-		
-	
-	
-		
-		
+
+func _on_button_body_entered(body):
+	$button/Sprite.frame = 1
+	if (etat == ISDOWN):
+		etat = UP
+		move()
+
+
+func _on_button_body_exited(body):
+	$button/Sprite.frame = 0
