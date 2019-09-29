@@ -49,14 +49,11 @@ func _physics_process(delta):
 	vel = move_and_slide_with_snap(vel, snap, UP)
 
 func movements(delta):
+	var col = Dictionary()
 	for i in get_slide_count():
-		var col = get_slide_collision(i)
-		var has_cubi = false
-		if col.collider.name == "cuba" and col.normal == Vector2.UP:
-			has_cubi = true
-			carried = true
-		if !has_cubi:
-			carried = false
+		col[get_slide_collision(i).collider.name] = get_slide_collision(i)
+	if col.has("cuba") and col["cuba"].normal == Vector2.UP:
+		carried = true
 	
 	var left = Input.is_action_pressed("left_cubi")
 	var right = Input.is_action_pressed("right_cubi")
@@ -66,7 +63,11 @@ func movements(delta):
 	else: vel.x = 0
 	
 	var jump = Input.is_action_just_pressed("jump_cubi")
-	if jump and is_on_floor():
+	var support_on_floor = is_on_floor()
+	print("cubi carried:",carried)
+	if carried and !get_parent().get_node("cubi").is_on_floor():
+		support_on_floor = false
+	if jump and support_on_floor:
 		emit_signal("wanna_jump")
 		yield(get_tree().create_timer(0.02),"timeout")
 		vel.y = -JUMP_HEIGH

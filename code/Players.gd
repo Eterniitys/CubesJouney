@@ -17,10 +17,6 @@ export(float) var cuba_delta_y = -0.65
 
 func _ready():
 	cubi.old_scale = old_scale
-	cuba.old_scale = old_scale
-#	pass
-
-func _process(delta):
 	# set scale Cubi
 	cubi.delta_scale_x = cubi_delta_x
 	cubi.delta_scale_y = cubi_delta_y
@@ -32,8 +28,9 @@ func _process(delta):
 	cuba.delta_scale_y = cuba_delta_y
 	cuba.scale_min_x = cuba_min_x
 	cuba.scale_min_y = cuba_min_y
-	
-	#replace_cam()
+
+func _process(delta):
+	replace_cam()
 
 func replace_cam():
 	var cuba_pos = $cuba.global_position
