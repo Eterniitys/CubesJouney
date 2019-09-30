@@ -15,6 +15,10 @@ export(float) var cuba_min_y = 1
 export(float) var cuba_delta_x = 2
 export(float) var cuba_delta_y = -0.65
 
+# Cam
+export(float) var ZOOM_MIN = 1
+export(float) var ZOOM_MAX = 1.5
+
 func _ready():
 	cubi.old_scale = old_scale
 	# set scale Cubi
@@ -30,9 +34,9 @@ func _ready():
 	cuba.scale_min_y = cuba_min_y
 
 func _process(delta):
-	replace_cam()
+	default_cam()
 
-func replace_cam():
+func default_cam():
 	var cuba_pos = $cuba.global_position
 	var cubi_pos = $cubi.global_position
 
@@ -46,3 +50,7 @@ func replace_cam():
 		$cam.global_position.y = cuba_pos.y + abs(cuba_pos.y - cubi_pos.y)/2
 	else:
 		$cam.global_position.y = cubi_pos.y + abs(cuba_pos.y - cubi_pos.y)/2
+	
+	print(max(ZOOM_MIN,min(ZOOM_MAX,(cuba_pos.distance_to(cubi_pos)/64)/10)))
+	$cam.zoom.x = max(ZOOM_MIN,min(ZOOM_MAX,(cuba_pos.distance_to(cubi_pos)/64)/10))
+	$cam.zoom.y = $cam.zoom.x

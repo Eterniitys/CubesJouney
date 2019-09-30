@@ -49,12 +49,6 @@ func _physics_process(delta):
 	vel = move_and_slide_with_snap(vel, snap, UP)
 
 func movements(delta):
-	var col = Dictionary()
-	for i in get_slide_count():
-		col[get_slide_collision(i).collider.name] = get_slide_collision(i)
-	if col.has("cuba") and col["cuba"].normal == Vector2.UP:
-		carried = true
-		$carried.text="carried"
 	
 	var left = Input.is_action_pressed("left_cubi")
 	var right = Input.is_action_pressed("right_cubi")
@@ -65,7 +59,7 @@ func movements(delta):
 	
 	var jump = Input.is_action_just_pressed("jump_cubi")
 	var support_on_floor = is_on_floor()
-	if carried and !get_parent().get_node("cubi").is_on_floor():
+	if carried and !get_parent().get_node("cuba").is_on_floor():
 		support_on_floor = false
 	if jump and support_on_floor:
 		emit_signal("wanna_jump")
@@ -105,10 +99,8 @@ func change_state(new_state):
 			$lbl_state.text="translate"
 		JUMP:
 			$lbl_state.text="jump"
-			$carried.text=""
 			snap = Vector2.ZERO
-			carried = false
-	print("idle" if state == IDLE else ("translate" if state == TRANSLATE else "jump")," -> ",snap, " velocity ->",vel)
+	#print("idle" if state == IDLE else ("translate" if state == TRANSLATE else "jump")," -> ",snap, " velocity ->",vel)
 
 func transform_alt(delta):
 	if Input.is_action_just_pressed("transform_down_cubi"):
@@ -146,3 +138,16 @@ func transform(delta):
 func _cuba_wanna_jump():
 	if carried :
 		vel.y = -JUMP_HEIGH
+
+
+func _on_feetsDetection_body_entered(body):
+	if body.name == "cuba":
+		carried = true
+		$carried.text = "carried"
+	
+
+
+func _on_feetsDetection_body_exited(body):
+	if body.name == "cuba":
+		carried = false
+		$carried.text = ""
