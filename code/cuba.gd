@@ -53,6 +53,7 @@ func movements(delta):
 	for i in get_slide_count():
 		col[get_slide_collision(i).collider.name] = get_slide_collision(i)
 	if col.has("cubi") and col["cubi"].normal == Vector2.UP:
+		$carried.text="carried"
 		carried = true
 	
 	var left = Input.is_action_pressed("left_cuba")
@@ -64,7 +65,6 @@ func movements(delta):
 	
 	var jump = Input.is_action_just_pressed("jump_cuba")
 	var support_on_floor = is_on_floor()
-	print("cuba carried:",carried)
 	if carried and !get_parent().get_node("cubi").is_on_floor():
 		support_on_floor = false
 	if jump and support_on_floor:
@@ -100,10 +100,14 @@ func change_state(new_state):
 	#print("idle" if state == IDLE else ("translate" if state == TRANSLATE else "jump"))
 	match state:
 		IDLE:
+			$lbl_state.text="idle"
 			snap = Vector2(0,32)
 		TRANSLATE:
+			$lbl_state.text="translate"
 			pass
 		JUMP:
+			$carried.text=""
+			$lbl_state.text="jump"
 			snap = Vector2.ZERO
 			carried = false
 
