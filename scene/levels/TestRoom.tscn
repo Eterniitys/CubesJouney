@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://tiles/tilesetDEV.tres" type="TileSet" id=1]
 [ext_resource path="res://tiles/Trought_cube.tres" type="TileSet" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://img/Tuto/tutoYoutube2.png" type="Texture" id=6]
 [ext_resource path="res://img/ugly button.png" type="Texture" id=7]
 [ext_resource path="res://code/platorm_2p.gd" type="Script" id=8]
+[ext_resource path="res://scene/prefab/camera_fixe_salle.tscn" type="PackedScene" id=9]
+[ext_resource path="res://code/camera_fixe_salle.gd" type="Script" id=10]
+
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64, 33 )
@@ -18,10 +22,14 @@ extents = Vector2( 32, 3.16541 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 64, 33 )
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 768, 448 )
+
 [node name="Node2D" type="Node2D"]
 position = Vector2( 0, -1 )
 
 [node name="Tilemap" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="Environnenment" type="TileMap" parent="Tilemap"]
 tile_set = ExtResource( 1 )
@@ -37,7 +45,7 @@ format = 1
 tile_data = PoolIntArray( 917555, 0, 0, 917556, 0, 0, 917557, 0, 0, 1048627, 0, 0, 1048628, 0, 0, 1048629, 0, 0, 1179665, 0, 0, 1179666, 0, 0, 1179667, 0, 0, 1179699, 0, 0, 1179700, 0, 0, 1179701, 0, 0, 1245188, 0, 0, 1245189, 0, 0, 1245190, 0, 0, 1245191, 0, 0, 1245192, 0, 0, 1310771, 0, 0, 1310772, 0, 0, 1310773, 0, 0, 1376260, 0, 0, 1376261, 0, 0, 1376262, 0, 0, 1376263, 0, 0, 1376264, 0, 0, 1441843, 0, 0, 1441844, 0, 0, 1441845, 0, 0, 3407894, 0, 0, 3407895, 0, 0, 3407896, 0, 0, 3407897, 0, 0, 3407898, 0, 0 )
 
 [node name="Players" parent="." instance=ExtResource( 3 )]
-position = Vector2( 2528, 865 )
+position = Vector2( 705, 3265 )
 cubi_delta_x = 2.0
 cubi_delta_y = -0.65
 cuba_delta_x = -0.65
@@ -145,8 +153,36 @@ shape = SubResource( 3 )
 
 [node name="pos_1" type="Position2D" parent="platform_2p"]
 position = Vector2( 0, -2240 )
+
+[node name="camera_fixe_salle2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 4864, 3169 )
+
+[node name="camera_fixe_salle" parent="." instance=ExtResource( 9 )]
+position = Vector2( 3552, 3432.94 )
+
+[node name="CameraSalleTest" type="Area2D" parent="."]
+editor/display_folded = true
+position = Vector2( 2016, 3432.94 )
+collision_layer = 0
+collision_mask = 3072
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Camera_salle" type="Camera2D" parent="CameraSalleTest"]
+zoom = Vector2( 1.5, 1.5 )
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = true
+smoothing_speed = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraSalleTest"]
+shape = SubResource( 4 )
 [connection signal="tween_completed" from="platform_b2p2/platform_t/Tween" to="platform_b2p2" method="_on_Tween_tween_completed"]
 [connection signal="body_entered" from="platform_b2p2/button" to="platform_b2p2" method="_on_button_body_entered"]
 [connection signal="body_exited" from="platform_b2p2/button" to="platform_b2p2" method="_on_button_body_exited"]
 [connection signal="tween_completed" from="platform_2p_2/platform_t/Tween" to="platform_2p_2" method="_on_Tween_tween_completed"]
 [connection signal="tween_completed" from="platform_2p/platform_t/Tween" to="platform_2p" method="_on_Tween_tween_completed"]
+[connection signal="body_entered" from="CameraSalleTest" to="CameraSalleTest" method="_on_CameraSalleTest_body_entered"]
+[connection signal="body_exited" from="CameraSalleTest" to="CameraSalleTest" method="_on_CameraSalleTest_body_exited"]

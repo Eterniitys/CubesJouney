@@ -4,15 +4,15 @@
 [ext_resource path="res://code/cubi.gd" type="Script" id=2]
 [ext_resource path="res://img/Tilemap_BoxDev.png" type="Texture" id=3]
 [ext_resource path="res://code/cuba.gd" type="Script" id=4]
-[ext_resource path="res://scene/objects/cubx_shadow.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scene/prefab/cubx_shadow.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 30, 1 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 30, 30 )
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -22,13 +22,8 @@ extents = Vector2( 30, 1 )
 position = Vector2( 1705, 780 )
 script = ExtResource( 1 )
 
-[node name="cam" type="Camera2D" parent="."]
-current = true
-drag_margin_h_enabled = false
-smoothing_enabled = true
-smoothing_speed = 2.0
-
 [node name="cubi" type="KinematicBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( -45, 45 )
 collision_layer = 1024
 collision_mask = 2083
@@ -78,9 +73,10 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cubi/feetsDetection"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="cuba" type="KinematicBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( 50, 45 )
 collision_layer = 2048
 collision_mask = 1059
@@ -94,7 +90,7 @@ region_enabled = true
 region_rect = Rect2( 128, 64, 64, 64 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cuba"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="lbl_state" type="Label" parent="cuba"]
 margin_left = -20.0
@@ -131,6 +127,26 @@ shape = SubResource( 4 )
 
 [node name="cubx_shadow" parent="." instance=ExtResource( 5 )]
 position = Vector2( 0, -10 )
+
+[node name="cam" type="Camera2D" parent="."]
+editor/display_folded = true
+current = true
+drag_margin_h_enabled = false
+
+[node name="ColorRect" type="ColorRect" parent="cam"]
+margin_left = -1.0
+margin_top = -11.0
+margin_right = 1.0
+margin_bottom = -9.0
+
+[node name="Label" type="Label" parent="cam"]
+margin_left = -15.0
+margin_top = -25.0
+margin_right = 12.0
+margin_bottom = -9.0
+text = "cam"
+align = 1
+valign = 1
 [connection signal="body_entered" from="cubi/feetsDetection" to="cubi" method="_on_feetsDetection_body_entered"]
 [connection signal="body_exited" from="cubi/feetsDetection" to="cubi" method="_on_feetsDetection_body_exited"]
 [connection signal="body_entered" from="cuba/feetsDetection" to="cuba" method="_on_feetsDetection_body_entered"]

@@ -18,6 +18,7 @@ export(float) var cuba_delta_y = -0.65
 # Cam
 export(float) var ZOOM_MIN = 1
 export(float) var ZOOM_MAX = 1.5
+var grabed = false
 
 func _ready():
 	cubi.old_scale = old_scale
@@ -51,6 +52,12 @@ func default_cam():
 	else:
 		$cam.global_position.y = cubi_pos.y + abs(cuba_pos.y - cubi_pos.y)/2
 	
-	print(max(ZOOM_MIN,min(ZOOM_MAX,(cuba_pos.distance_to(cubi_pos)/64)/10)))
 	$cam.zoom.x = max(ZOOM_MIN,min(ZOOM_MAX,(cuba_pos.distance_to(cubi_pos)/64)/10))
 	$cam.zoom.y = $cam.zoom.x
+	
+func grabbing_cam(new_cam):
+	print("camera attrapée")
+	new_cam.current = true
+
+func free_cam():
+	$cam.current = true
