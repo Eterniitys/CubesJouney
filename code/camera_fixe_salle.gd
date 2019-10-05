@@ -25,6 +25,4 @@ func _on_CameraSalleTest_body_exited(body):
 		cubaInside = false
 		
 	if !cubaInside or !cubiInside:
-		body.get_parent().grabed = false
-		print("camera lachée")
-		body.get_parent().free_cam()
+		body.get_parent().try_free_cam($Camera_salle)
