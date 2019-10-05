@@ -19,6 +19,11 @@ config/name="CubesJourney"
 run/main_scene="res://scene/levels/TestRoom.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=2048
+window/size/height=1024
+
 [input]
 
 ui_accept={
@@ -141,4 +146,5 @@ travers_cubi={
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=1
 quality/2d/use_pixel_snap=true
+environment/default_clear_color=Color( 0.0705882, 0.372549, 0.729412, 0.792157 )
 environment/default_environment="res://default_env.tres"
