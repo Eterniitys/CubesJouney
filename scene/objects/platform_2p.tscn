@@ -26,6 +26,7 @@ region_rect = Rect2( 64, 128, 128, 64 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platform_t"]
 shape = SubResource( 1 )
+one_way_collision = true
 
 [node name="Tween" type="Tween" parent="platform_t"]
 

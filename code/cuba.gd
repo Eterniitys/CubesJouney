@@ -75,6 +75,7 @@ func travers ():
 func call_shadow():
 	shadow.set_collision_layer_bit(10,false)
 	shadow.get_node("sprite").region_rect = $Sprite.region_rect
+	yield(get_tree().create_timer(0.01),"timeout")
 	shadow.set_collision_layer_bit(11,true)
 	shadow.scale = scale
 	shadow.position = position
@@ -95,7 +96,7 @@ func change_state(new_state):
 	match state:
 		IDLE:
 			$lbl_state.text="idle"
-			snap = Vector2(0,32)
+			snap = Vector2.DOWN * 32
 		TRANSLATE:
 			$lbl_state.text="translate"
 			pass

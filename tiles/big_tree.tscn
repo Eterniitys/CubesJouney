@@ -1,114 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://img/ground/flat_big_tree.png" type="Texture" id=1]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 16 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 16, 8 )
 
 [node name="Node2D" type="Node2D"]
 
 [node name="flat_big_tree" type="Sprite" parent="."]
-position = Vector2( 16, 16 )
+position = Vector2( 32, 32 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 4
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="flat_big_tree5" type="Sprite" parent="."]
-position = Vector2( 16, 56 )
-texture = ExtResource( 1 )
-vframes = 4
-hframes = 4
-frame = 3
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="flat_big_tree2" type="Sprite" parent="."]
-position = Vector2( 64, 16 )
+position = Vector2( 32, 32 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 4
-frame = 1
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="flat_big_tree6" type="Sprite" parent="."]
-position = Vector2( 64, 56 )
-texture = ExtResource( 1 )
-vframes = 4
-hframes = 4
-frame = 4
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="flat_big_tree3" type="Sprite" parent="."]
-editor/display_folded = true
-position = Vector2( 112, 16 )
-texture = ExtResource( 1 )
-vframes = 4
-hframes = 4
-frame = 2
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="StaticBody2D" type="StaticBody2D" parent="flat_big_tree3"]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="flat_big_tree3/StaticBody2D"]
-shape = SubResource( 1 )
-one_way_collision = true
-
-[node name="flat_big_tree7" type="Sprite" parent="."]
-editor/display_folded = true
-position = Vector2( 112, 56 )
-texture = ExtResource( 1 )
-vframes = 4
-hframes = 4
-frame = 6
-
-[node name="StaticBody2D" type="StaticBody2D" parent="flat_big_tree7"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="flat_big_tree7/StaticBody2D"]
-position = Vector2( 0, -8 )
-shape = SubResource( 2 )
-one_way_collision = true
-
-[node name="flat_big_tree4" type="Sprite" parent="."]
-editor/display_folded = true
-position = Vector2( 160, 16 )
-texture = ExtResource( 1 )
-vframes = 4
-hframes = 4
-frame = 5
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="StaticBody2D" type="StaticBody2D" parent="flat_big_tree4"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="flat_big_tree4/StaticBody2D"]
-shape = SubResource( 1 )
-one_way_collision = true
-
-[node name="flat_big_tree8" type="Sprite" parent="."]
-editor/display_folded = true
-position = Vector2( 160, 56 )
-texture = ExtResource( 1 )
-vframes = 4
-hframes = 4
-frame = 7
-
-[node name="StaticBody2D" type="StaticBody2D" parent="flat_big_tree8"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="flat_big_tree8/StaticBody2D"]
-position = Vector2( 0, -8 )
-shape = SubResource( 2 )
-one_way_collision = true

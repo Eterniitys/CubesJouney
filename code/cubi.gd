@@ -75,6 +75,7 @@ func travers ():
 func call_shadow():
 	shadow.set_collision_layer_bit(11,false)
 	shadow.get_node("sprite").region_rect = $Sprite.region_rect
+	yield(get_tree().create_timer(0.01),"timeout")
 	shadow.set_collision_layer_bit(10,true)
 	shadow.scale = scale
 	shadow.position = position
