@@ -130,7 +130,6 @@ shape = SubResource( 4 )
 position = Vector2( 0, -10 )
 
 [node name="cam" type="Camera2D" parent="."]
-editor/display_folded = true
 current = true
 drag_margin_h_enabled = false
 

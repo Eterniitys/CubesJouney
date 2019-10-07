@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://code/moving_platform.gd" type="Script" id=1]
+[ext_resource path="res://scene/prefab/platform.tscn" type="PackedScene" id=2]
+
+[node name="moving_platform" type="Node2D"]
+script = ExtResource( 1 )
+duration = 1
+
+[node name="platform" parent="." instance=ExtResource( 2 )]
+position = Vector2( -32, 64 )
+
+[node name="pos_1" type="Position2D" parent="."]
+position = Vector2( 64, 64 )
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_completed"]

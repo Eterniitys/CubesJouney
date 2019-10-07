@@ -58,12 +58,8 @@ func default_cam():
 func grabbing_cam(new_cam):
 	new_cam.make_current()
 	cam_lst.append(new_cam)
-	print("nouvelle cam : ",new_cam)
-	print(cam_lst)
 
 func try_free_cam(cam_to_free):
-	print("cam enlevé   : ",cam_to_free)
-	print(cam_lst)
 	cam_lst.erase(cam_to_free)
 	if cam_lst.empty():
 		$cam.make_current()
