@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://tiles/tilesetDEV.tres" type="TileSet" id=1]
 [ext_resource path="res://tiles/Trought_cube.tres" type="TileSet" id=2]
@@ -14,6 +14,9 @@
 [ext_resource path="res://scene/objects/platform_2p.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scene/objects/camera_fixe_salle.tscn" type="PackedScene" id=13]
 [ext_resource path="res://code/camera_fixe_salle.gd" type="Script" id=14]
+[ext_resource path="res://code/Level01.gd" type="Script" id=15]
+[ext_resource path="res://img/level1.png" type="Texture" id=16]
+[ext_resource path="res://img/level2.png" type="Texture" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64, 33 )
@@ -26,6 +29,9 @@ extents = Vector2( 64, 33 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 768, 448 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 32, 64 )
 
 [node name="Node2D" type="Node2D"]
 position = Vector2( 0, -1 )
@@ -208,6 +214,42 @@ smoothing_speed = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraSalleTest"]
 shape = SubResource( 4 )
+
+[node name="exit_right_level1" type="Node2D" parent="."]
+position = Vector2( 864, 3457 )
+script = ExtResource( 15 )
+next_right = "res://scene/levels/Level01.tscn"
+
+[node name="exit_right" type="Area2D" parent="exit_right_level1"]
+collision_layer = 64
+collision_mask = 3072
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exit_right_level1/exit_right"]
+shape = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="exit_right_level1/exit_right"]
+texture = ExtResource( 16 )
+
+[node name="lexit_right_evel2" type="Node2D" parent="."]
+position = Vector2( 1024, 3329 )
+script = ExtResource( 15 )
+next_right = "res://scene/levels/Level02.tscn"
+
+[node name="exit_right" type="Area2D" parent="lexit_right_evel2"]
+collision_layer = 64
+collision_mask = 3072
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lexit_right_evel2/exit_right"]
+shape = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="lexit_right_evel2/exit_right"]
+texture = ExtResource( 17 )
 [connection signal="tween_completed" from="platform_b2p2/platform_t/Tween" to="platform_b2p2" method="_on_Tween_tween_completed"]
 [connection signal="body_entered" from="platform_b2p2/button" to="platform_b2p2" method="_on_button_body_entered"]
 [connection signal="body_exited" from="platform_b2p2/button" to="platform_b2p2" method="_on_button_body_exited"]
@@ -215,3 +257,7 @@ shape = SubResource( 4 )
 [connection signal="tween_completed" from="platform_2p/platform_t/Tween" to="platform_2p" method="_on_Tween_tween_completed"]
 [connection signal="body_entered" from="CameraSalleTest" to="CameraSalleTest" method="_on_CameraSalleTest_body_entered"]
 [connection signal="body_exited" from="CameraSalleTest" to="CameraSalleTest" method="_on_CameraSalleTest_body_exited"]
+[connection signal="body_entered" from="exit_right_level1/exit_right" to="exit_right_level1" method="_on_exit_right_body_entered"]
+[connection signal="body_exited" from="exit_right_level1/exit_right" to="exit_right_level1" method="_on_exit_right_body_exited"]
+[connection signal="body_entered" from="lexit_right_evel2/exit_right" to="lexit_right_evel2" method="_on_exit_right_body_entered"]
+[connection signal="body_exited" from="lexit_right_evel2/exit_right" to="lexit_right_evel2" method="_on_exit_right_body_exited"]
