@@ -10,6 +10,7 @@ export var use_button = false
 
 export(int) var NB_CYCLE = 1
 var cmpt
+var locked = false
 
 func _ready():
 	move_vec = $pos_1.position - $platform.position
@@ -29,6 +30,8 @@ func move():
 	)
 	$Tween.start()
 
+# warning-ignore:unused_argument
+# warning-ignore:unused_argument
 func _on_Tween_completed(object, key):
 	move_vec *= -1
 	if continue_when_started or !use_button:
@@ -37,4 +40,13 @@ func _on_Tween_completed(object, key):
 		cmpt -= 1
 		move()
 	else:
-		cmpt = NB_CYCLE*2
+		locked = false
+		$button/Sprite.frame = 0
+
+# warning-ignore:unused_argument
+func _on_button_body_entered(body):
+	if !locked:
+		locked = true
+		cmpt = NB_CYCLE*2-1
+		$button/Sprite.frame = 1
+		move()

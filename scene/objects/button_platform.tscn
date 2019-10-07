@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://code/moving_platform.gd" type="Script" id=1]
+[ext_resource path="res://scene/prefab/platform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scene/prefab/button.tscn" type="PackedScene" id=3]
+
+[node name="button_platform" type="Node2D"]
+position = Vector2( 736, 512 )
+script = ExtResource( 1 )
+use_button = true
+
+[node name="platform" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -36.1654 )
+
+[node name="pos_1" type="Position2D" parent="."]
+position = Vector2( 128, -68.1654 )
+
+[node name="button" parent="." instance=ExtResource( 3 )]
+position = Vector2( 128, -32 )
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="body_entered" from="button" to="." method="_on_button_body_entered"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_completed"]
