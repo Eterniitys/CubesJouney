@@ -1,20 +1,19 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://tiles/tilesetDEV.tres" type="TileSet" id=1]
 [ext_resource path="res://tiles/Trought_cube.tres" type="TileSet" id=2]
 [ext_resource path="res://tiles/flat_ground_x64.tres" type="TileSet" id=3]
 [ext_resource path="res://tiles/x256_misc.tres" type="TileSet" id=4]
 [ext_resource path="res://tiles/flat_ground_x32.tres" type="TileSet" id=5]
-[ext_resource path="res://tiles/big_tree_x32.tres" type="TileSet" id=6]
-[ext_resource path="res://scene/Cubi&Cuba.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scene/objects/platform_b2p.tscn" type="PackedScene" id=8]
-[ext_resource path="res://code/movingPlatorm.gd" type="Script" id=9]
-[ext_resource path="res://img/Tuto/tutoYoutube2.png" type="Texture" id=10]
-[ext_resource path="res://img/ugly button.png" type="Texture" id=11]
-[ext_resource path="res://code/platorm_2p.gd" type="Script" id=12]
-[ext_resource path="res://scene/objects/platform_2p.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scene/objects/camera_fixe_salle.tscn" type="PackedScene" id=14]
-[ext_resource path="res://code/camera_fixe_salle.gd" type="Script" id=15]
+[ext_resource path="res://scene/Cubi&Cuba.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scene/objects/platform_b2p.tscn" type="PackedScene" id=7]
+[ext_resource path="res://code/movingPlatorm.gd" type="Script" id=8]
+[ext_resource path="res://img/Tuto/tutoYoutube2.png" type="Texture" id=9]
+[ext_resource path="res://img/ugly button.png" type="Texture" id=10]
+[ext_resource path="res://code/platorm_2p.gd" type="Script" id=11]
+[ext_resource path="res://scene/objects/platform_2p.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scene/objects/camera_fixe_salle.tscn" type="PackedScene" id=13]
+[ext_resource path="res://code/camera_fixe_salle.gd" type="Script" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64, 33 )
@@ -65,26 +64,25 @@ format = 1
 tile_data = PoolIntArray( 6881314, 0, 0, 6881316, 0, 0, 7143436, 0, 0, 7143443, 0, 0, 7143450, 0, 0, 7143469, 0, 0 )
 
 [node name="x32_big_tree" type="TileMap" parent="Tilemap"]
-tile_set = ExtResource( 6 )
 cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( 6225966, 2, 0, 6225967, 2, 0, 6225968, 2, 0, 6225969, 2, 0, 6225970, 2, 0, 6225971, 2, 0, 6225972, 2, 0, 6225973, 2, 0, 6225974, 2, 0, 6291502, 2, 0, 6291503, 2, 0, 6291504, 2, 0, 6291505, 2, 0, 6291506, 2, 0, 6291507, 2, 0, 6291508, 2, 0, 6291509, 2, 0, 6291510, 2, 0, 6291511, 2, 0, 6357038, 2, 0, 6357039, 2, 0, 6357040, 2, 0, 6357041, 2, 0, 6357042, 2, 0, 6357043, 2, 0, 6357044, 2, 0, 6357045, 2, 0, 6357046, 2, 0, 6357047, 2, 0, 6357048, 2, 0, 6422574, 2, 0, 6422575, 2, 0, 6422576, 2, 0, 6422577, 2, 0, 6422578, 2, 0, 6422579, 2, 0, 6422580, 2, 0, 6422581, 2, 0, 6422582, 2, 0, 6422583, 2, 0, 6422584, 2, 0, 6488109, 2, 0, 6488110, 2, 0, 6488111, 2, 0, 6488112, 2, 0, 6488113, 2, 0, 6488114, 2, 0, 6488115, 2, 0, 6488116, 2, 0, 6488117, 2, 0, 6488118, 2, 0, 6488119, 2, 0, 6488120, 2, 0, 6553645, 2, 0, 6553646, 2, 0, 6553647, 2, 0, 6553648, 2, 0, 6553649, 2, 0, 6553650, 2, 0, 6553651, 2, 0, 6553652, 2, 0, 6553653, 2, 0, 6553654, 2, 0, 6553655, 2, 0, 6619181, 2, 0, 6619182, 2, 0, 6619183, 2, 0, 6619184, 2, 0, 6619185, 2, 0, 6619186, 2, 0, 6619187, 2, 0, 6619188, 2, 0, 6619189, 2, 0, 6684720, 0, 0, 6750256, 0, 0, 6750257, 0, 0, 6946864, 0, 0, 6946865, 0, 0, 7012400, 0, 0, 7012401, 0, 0, 7077936, 0, 0, 7077937, 0, 0, 7143472, 0, 0, 7143473, 0, 0 )
 
-[node name="Players" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1984, 3649 )
+[node name="Players" parent="." instance=ExtResource( 6 )]
+position = Vector2( 512, 3414 )
 cubi_delta_x = 2.0
 cubi_delta_y = -0.65
 cuba_delta_x = -0.65
 cuba_delta_y = 2.0
 
-[node name="platform_b2p" parent="." instance=ExtResource( 8 )]
+[node name="platform_b2p" parent="." instance=ExtResource( 7 )]
 duration = 1
 t_ease = 4
 
 [node name="platform_b2p2" type="Node2D" parent="."]
 editor/display_folded = true
 position = Vector2( 7104, 3105 )
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 duration = 3
 transition = 0
 t_ease = 3
@@ -97,7 +95,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="platform_b2p2/platform_t"]
-texture = ExtResource( 10 )
+texture = ExtResource( 9 )
 region_enabled = true
 region_rect = Rect2( 64, 128, 128, 64 )
 
@@ -122,13 +120,13 @@ position = Vector2( 0, 28.8346 )
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="platform_b2p2/button"]
-texture = ExtResource( 11 )
+texture = ExtResource( 10 )
 hframes = 2
 
 [node name="platform_2p_2" type="Node2D" parent="."]
 editor/display_folded = true
 position = Vector2( 2368, 993 )
-script = ExtResource( 12 )
+script = ExtResource( 11 )
 transition = 0
 t_ease = 2
 
@@ -143,7 +141,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="platform_2p_2/platform_t"]
-texture = ExtResource( 10 )
+texture = ExtResource( 9 )
 region_enabled = true
 region_rect = Rect2( 64, 128, 128, 64 )
 
@@ -158,7 +156,7 @@ position = Vector2( -256, -224 )
 [node name="platform_2p" type="Node2D" parent="."]
 editor/display_folded = true
 position = Vector2( 128, 3425 )
-script = ExtResource( 12 )
+script = ExtResource( 11 )
 duration = 10
 
 [node name="platform_t" type="RigidBody2D" parent="platform_2p"]
@@ -167,7 +165,7 @@ collision_mask = 0
 mode = 3
 
 [node name="Sprite" type="Sprite" parent="platform_2p/platform_t"]
-texture = ExtResource( 10 )
+texture = ExtResource( 9 )
 region_enabled = true
 region_rect = Rect2( 64, 128, 128, 64 )
 
@@ -179,14 +177,14 @@ shape = SubResource( 3 )
 [node name="pos_1" type="Position2D" parent="platform_2p"]
 position = Vector2( 0, -2240 )
 
-[node name="platform_2p2" parent="." instance=ExtResource( 13 )]
+[node name="platform_2p2" parent="." instance=ExtResource( 12 )]
 position = Vector2( 2176, 3745 )
 
-[node name="camera_fixe_salle2" parent="." instance=ExtResource( 14 )]
+[node name="camera_fixe_salle2" parent="." instance=ExtResource( 13 )]
 visible = false
 position = Vector2( 4864, 3169 )
 
-[node name="camera_fixe_salle" parent="." instance=ExtResource( 14 )]
+[node name="camera_fixe_salle" parent="." instance=ExtResource( 13 )]
 visible = false
 position = Vector2( 3552, 3432.94 )
 
@@ -196,7 +194,7 @@ visible = false
 position = Vector2( 2016, 3432.94 )
 collision_layer = 0
 collision_mask = 3072
-script = ExtResource( 15 )
+script = ExtResource( 14 )
 __meta__ = {
 "_edit_group_": true
 }

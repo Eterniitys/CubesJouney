@@ -19,6 +19,10 @@ config/name="CubesJourney"
 run/main_scene="res://scene/levels/TestRoom.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GLOBAL="*res://code/global.gd"
+
 [display]
 
 window/size/width=2048
@@ -138,6 +142,7 @@ travers_cubi={
 2d_physics/layer_1="env"
 2d_physics/layer_2="moving_platforms"
 2d_physics/layer_6="crossable_platform"
+2d_physics/layer_7="checkpoint"
 2d_physics/layer_11="Cubi"
 2d_physics/layer_12="Cuba"
 
