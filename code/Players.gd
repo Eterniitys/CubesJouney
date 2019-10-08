@@ -33,6 +33,15 @@ func _ready():
 	cuba.delta_scale_y = cuba_delta_y
 	cuba.scale_min_x = cuba_min_x
 	cuba.scale_min_y = cuba_min_y
+	
+	# set cam limit
+	var ref_tilemap = get_parent().get_node("TileMaps/x64_gd_tiles")
+	var used_zone = ref_tilemap.get_used_rect()
+	var cell_size = ref_tilemap.cell_size
+	$cam.limit_left = used_zone.position.x * cell_size.x
+	$cam.limit_top = used_zone.position.y * cell_size.y
+	$cam.limit_right = (used_zone.position.x + used_zone.size.x) * cell_size.x
+	$cam.limit_bottom = (used_zone.position.y + used_zone.size.y)  * cell_size.y
 
 func _process(delta):
 	default_cam()
