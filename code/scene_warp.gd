@@ -1,7 +1,6 @@
 extends Node2D
 
-export (String, FILE, "*.tscn") var next_right
-
+export (String, FILE, "*.tscn") var next_scene
 var cubiPresent = false
 var cubaPresent = false
 
@@ -14,7 +13,7 @@ func _on_exit_right_body_entered(body):
 	if (body.name == "cuba"):
 		cubaPresent = true
 	if (cubiPresent and cubaPresent):
-		get_tree().change_scene(next_right)
+		get_tree().change_scene(next_scene)
 
 
 func _on_exit_right_body_exited(body):

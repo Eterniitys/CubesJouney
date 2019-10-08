@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://scene/levels/HubRoom.gd" type="Script" id=1]
+[ext_resource path="res://code/HubRoom.gd" type="Script" id=1]
 [ext_resource path="res://tiles/TileMaps.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scene/Cubi&Cuba.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scene/exit_right.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scene/scene_warp.tscn" type="PackedScene" id=4]
 [ext_resource path="res://img/level1.png" type="Texture" id=5]
 [ext_resource path="res://img/level2.png" type="Texture" id=6]
 
@@ -22,25 +22,25 @@ tile_data = PoolIntArray(  )
 tile_data = PoolIntArray( 65537, 6, 0, 65538, 6, 0, 65539, 6, 0, 65540, 6, 0, 65541, 6, 0, 65542, 6, 0, 65543, 6, 0, 65544, 6, 0, 65545, 6, 0, 65546, 6, 0, 65547, 6, 0, 65548, 6, 0, 65549, 6, 0, 65550, 6, 0, 65551, 6, 0, 65552, 6, 0, 65553, 6, 0, 131073, 6, 0, 131089, 6, 0, 196609, 6, 0, 196625, 6, 0, 262145, 6, 0, 262161, 6, 0, 327681, 6, 0, 327697, 6, 0, 393233, 6, 0, 458769, 6, 0, 524305, 6, 0, 589825, 6, 0, 589841, 6, 0, 655361, 6, 0, 655377, 6, 0, 720897, 6, 0, 720898, 6, 0, 720899, 6, 0, 720900, 6, 0, 720901, 6, 0, 720902, 6, 0, 720903, 6, 0, 720905, 6, 0, 720906, 6, 0, 720907, 6, 0, 720908, 6, 0, 720911, 6, 0, 720912, 6, 0, 720913, 6, 0, 3014664, 0, 0, 3014668, 0, 0 )
 
 [node name="Players" parent="." instance=ExtResource( 3 )]
-position = Vector2( 299.057, 506.859 )
+position = Vector2( -96, 0 )
 
-[node name="level01" parent="." instance=ExtResource( 4 )]
+[node name="warp_level01" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
 position = Vector2( 544, 1536 )
-next_right = "res://scene/levels/Level01.tscn"
+next_scene = "res://scene/levels/Level01.tscn"
 
-[node name="Sprite" parent="level01/exit_right" index="1"]
+[node name="exit" parent="warp_level01" index="0"]
+editor/display_folded = true
+
+[node name="Sprite" parent="warp_level01/exit" index="1"]
 texture = ExtResource( 5 )
 
-[node name="level02" parent="." instance=ExtResource( 4 )]
+[node name="warp_level02" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
 position = Vector2( 800, 1536 )
-next_right = "res://scene/levels/Level02.tscn"
+next_scene = "res://scene/levels/Level02.tscn"
 
-[node name="exit_right" parent="level02" index="0"]
-editor/display_folded = true
-
-[node name="Sprite" parent="level02/exit_right" index="1"]
+[node name="Sprite" parent="warp_level02/exit" index="1"]
 texture = ExtResource( 6 )
 
 [node name="initial" type="Position2D" parent="."]
@@ -48,6 +48,6 @@ position = Vector2( 319.057, 1504 )
 
 [editable path="TileMaps"]
 
-[editable path="level01"]
+[editable path="warp_level01"]
 
-[editable path="level02"]
+[editable path="warp_level02"]

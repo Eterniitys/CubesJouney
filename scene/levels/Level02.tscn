@@ -1,19 +1,18 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://code/Level02.gd" type="Script" id=1]
+[ext_resource path="res://code/levels_code.gd" type="Script" id=1]
 [ext_resource path="res://tiles/TileMaps.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scene/Cubi&Cuba.tscn" type="PackedScene" id=3]
-[ext_resource path="res://code/Level01.gd" type="Script" id=4]
+[ext_resource path="res://code/scene_warp.gd" type="Script" id=4]
 [ext_resource path="res://img/hub.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 64 )
 
-[node name="Node2D" type="Node2D"]
+[node name="level02" type="Node2D"]
 script = ExtResource( 1 )
-next_left = "res://scene/levels/TestRoom.tscn"
 
-[node name="left_position" type="Position2D" parent="."]
+[node name="initial" type="Position2D" parent="."]
 position = Vector2( 384, 896 )
 
 [node name="TileMaps" parent="." instance=ExtResource( 2 )]
@@ -30,24 +29,24 @@ tile_data = PoolIntArray( 65537, 6, 0, 65538, 6, 0, 65539, 6, 0, 65540, 6, 0, 65
 [node name="Players" parent="." instance=ExtResource( 3 )]
 position = Vector2( 416, 544 )
 
-[node name="exit_right" type="Node2D" parent="."]
+[node name="exit" type="Node2D" parent="."]
 position = Vector2( 1888, 896 )
 script = ExtResource( 4 )
-next_right = "res://scene/levels/HubRoom.tscn"
+next_scene = "res://scene/levels/HubRoom.tscn"
 
-[node name="exit_right" type="Area2D" parent="exit_right"]
+[node name="exit" type="Area2D" parent="exit"]
 collision_layer = 64
 collision_mask = 3072
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="exit_right/exit_right"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exit/exit"]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="exit_right/exit_right"]
+[node name="Sprite" type="Sprite" parent="exit/exit"]
 texture = ExtResource( 5 )
-[connection signal="body_entered" from="exit_right/exit_right" to="exit_right" method="_on_exit_right_body_entered"]
-[connection signal="body_exited" from="exit_right/exit_right" to="exit_right" method="_on_exit_right_body_exited"]
+[connection signal="body_entered" from="exit/exit" to="exit" method="_on_exit_right_body_entered"]
+[connection signal="body_exited" from="exit/exit" to="exit" method="_on_exit_right_body_exited"]
 
 [editable path="TileMaps"]
