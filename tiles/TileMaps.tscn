@@ -2,7 +2,7 @@
 
 [ext_resource path="res://tiles/subTileMaps/tilesetDEV.tres" type="TileSet" id=1]
 [ext_resource path="res://tiles/subTileMaps/Trought_cube.tres" type="TileSet" id=2]
-[ext_resource path="res://tiles/subTileMaps/tileGround.tres" type="TileSet" id=3]
+[ext_resource path="res://tiles/subTileMaps/test.tres" type="TileSet" id=3]
 
 [node name="TileMaps" type="Node2D"]
 z_index = 10
@@ -31,4 +31,4 @@ tile_data = PoolIntArray( 65537, 6, 0, 65538, 6, 0, 65539, 6, 0, 65540, 6, 0, 65
 [node name="ground" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
 format = 1
-tile_data = PoolIntArray( 65545, 0, 0 )
+tile_data = PoolIntArray( 327681, 0, 0, 327682, 1, 0 )
