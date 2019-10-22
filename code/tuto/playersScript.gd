@@ -55,19 +55,19 @@ func change_state(new_state):
 	#print("idle" if state == IDLE else ("translate" if state == TRANSLATE else "jump")," -> ",snap, " velocity ->",vel)
 
 func travers ():
-	if Input.is_action_just_pressed("travers_cuba"):
+	if Input.is_action_just_pressed("travers_"+myName):
 		set_collision_mask_bit(5,false)
-	if Input.is_action_just_released("travers_cuba"):
+	if Input.is_action_just_released("travers_"+myName):
 		set_collision_mask_bit(5,true)
 
 func transform(delta):
-	if Input.is_action_just_pressed("transform_down_cuba") and is_on_floor() and (scale.y < 0.5) :
+	if Input.is_action_just_pressed("transform_down_"+myName) and is_on_floor() and (scale.y < 0.5) :
 		vel.y = -200
 	
-	if Input.is_action_pressed("transform_down_cuba"):
+	if Input.is_action_pressed("transform_down_"+myName):
 		scale.x = lerp (scale.x, scale_min_x, scale_speed)
 		scale.y = lerp (scale.y, scale_min_y, scale_speed)
 	
-	if Input.is_action_pressed("transform_up_cuba"):
+	if Input.is_action_pressed("transform_up_"+myName):
 		scale.x = lerp (scale.x, scale_min_x + delta_scale_x, scale_speed)
 		scale.y = lerp (scale.y, scale_min_y + delta_scale_y, scale_speed)
