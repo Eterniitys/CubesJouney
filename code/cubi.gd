@@ -1,38 +1,11 @@
-extends KinematicBody2D
+extends "res://code/tuto/playersScript.gd"
 
-const UP = Vector2.UP
-const GRAVITY = 1000
-const MAX_SPEED = 300
-const JUMP_HEIGH = 550
-# movementd
-enum {IDLE, TRANSLATE, JUMP}
-var vel = Vector2()
-var carried = false
-signal wanna_jump
-# Shadow
-var shadow
-# TODO del
-var old_scale = false
-var state
-var snap
-# Scaling cube datas
-var scale_speed = 0.15
-var scale_min_x
-var scale_min_y
-var delta_scale_x
-var delta_scale_y
 var max_tunnel_height = -1
 var max_tunnel_width = -1
 var max_width = -1
 var max_height = -1
 var right_collision = false
 var left_collision = false
-
-
-func _ready():
-	shadow = get_parent().get_node("cubx_shadow")
-	get_parent().get_node("cuba").connect("wanna_jump", self, "_cuba_wanna_jump")
-	change_state(IDLE)
 
 func _physics_process(delta):
 	# Gravity
@@ -42,10 +15,7 @@ func _physics_process(delta):
 	manage_state()
 	movements(delta)
 	# Transform
-	if old_scale:
-		transform_alt(delta)
-	else:
-		transform(delta)
+	transform(delta)
 	# Shadow power
 	if Input.is_action_just_pressed("shadow_cubi"):
 		call_shadow()
@@ -54,6 +24,7 @@ func _physics_process(delta):
 	
 	# Moves applications
 	vel = move_and_slide_with_snap(vel, snap, UP)
+
 
 func movements(delta):
 	
@@ -73,63 +44,13 @@ func movements(delta):
 		yield(get_tree().create_timer(0.02),"timeout")
 		vel.y = -JUMP_HEIGH
 
-func travers ():
-	if Input.is_action_just_pressed("travers_cubi"):
-		set_collision_mask_bit(5,false)
-	if Input.is_action_just_released("travers_cubi"):
-		set_collision_mask_bit(5,true)	
-
 func call_shadow():
 	shadow.set_collision_layer_bit(11,false)
-	shadow.get_node("sprite").region_rect = $Sprite.region_rect
+	shadow.get_node("sprite").texture = $Sprite.texture
 	yield(get_tree().create_timer(0.01),"timeout")
 	shadow.set_collision_layer_bit(10,true)
 	shadow.scale = scale
 	shadow.position = position
-
-func manage_state():
-	if state == IDLE and vel.x != 0:
-		change_state(TRANSLATE)
-	elif state == TRANSLATE and vel.x == 0:
-		change_state(IDLE)
-	elif state in [IDLE,TRANSLATE] and vel.y:
-		change_state(JUMP)
-	elif state == JUMP and vel.y == 0:
-		change_state(IDLE)
-
-func change_state(new_state):
-	state = new_state
-	match state:
-		IDLE:
-			$lbl_state.text="idle"
-			snap = Vector2.DOWN * 32
-		TRANSLATE:
-			$lbl_state.text="translate"
-		JUMP:
-			$lbl_state.text="jump"
-			snap = Vector2.ZERO
-	#print("idle" if state == IDLE else ("translate" if state == TRANSLATE else "jump")," -> ",snap, " velocity ->",vel)
-
-func transform_alt(delta):
-	if Input.is_action_just_pressed("transform_down_cubi"):
-		vel.y = -200
-		if state != "down":	
-			if state == "up":
-				state = "normal"			
-			else :
-				state = "down"
-			scale.x += delta_scale_x
-			scale.y -= delta_scale_y
-	
-	if Input.is_action_just_pressed("transform_up_cubi"):
-		
-		if state != "up":
-			if state == "down":
-				state = "normal"			
-			else :
-				state = "up"
-			scale.x -= delta_scale_x
-			scale.y += delta_scale_y
 
 func transform(delta):
 	if Input.is_action_just_pressed("transform_down_cubi") and is_on_floor() and (scale.y < 0.5) :
