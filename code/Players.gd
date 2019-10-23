@@ -1,6 +1,5 @@
 extends Node2D
 
-export(bool) var old_scale = false
 # Cubi variables
 onready var cubi = $cubi
 export(float) var cubi_min_x = 1
@@ -21,7 +20,7 @@ export(float) var ZOOM_MAX = 1.5
 var cam_lst = []
 
 func _ready():
-	cubi.old_scale = old_scale
+	
 	# set scale Cubi
 	cubi.delta_scale_x = cubi_delta_x
 	cubi.delta_scale_y = cubi_delta_y
