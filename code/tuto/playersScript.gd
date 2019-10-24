@@ -6,6 +6,7 @@ const UP = Vector2.UP
 const GRAVITY = 1000
 const MAX_SPEED = 300
 const JUMP_HEIGH = 550
+const RESET_TIMER_MAX = 2
 # movement
 enum {IDLE, TRANSLATE, JUMP}
 var vel = Vector2()
@@ -14,6 +15,7 @@ signal wanna_jump
 # Shadow
 var shadow
 #
+var reset_timer
 var state
 var snap
 # Scaling cube datas
@@ -34,7 +36,15 @@ func _physics_process(delta):
 		vel.y += GRAVITY * delta
 	# Moves
 	manage_state()
-	movements(delta)
+	if Input.is_action_pressed("resetPos"):
+		reset_timer+=delta
+		vel.x = 0
+		if reset_timer >= RESET_TIMER_MAX:
+			reset_pos()
+			reset_timer=0
+	else:
+		reset_timer=0
+		movements(delta)
 	# Transform
 	transform(delta)
 	# Shadow power
@@ -88,7 +98,6 @@ func change_state(new_state):
 			$lbl_state.text="jump"
 			snap = Vector2.ZERO
 			$Sprite.frame = 3
-	#print("idle" if state == IDLE else ("translate" if state == TRANSLATE else "jump")," -> ",snap, " velocity ->",vel)
 
 func travers ():
 	if Input.is_action_just_pressed("travers_"+myName):
@@ -110,9 +119,12 @@ func transform(delta):
 
 func reset_pos():
 	var new_pos
+	vel = Vector2.ZERO
 	if myName == "cubi":
 		new_pos = LIFELINE.checkpoint_cubi.position
+		global_position.x = new_pos.x-45
 	else:
 		new_pos = LIFELINE.checkpoint_cuba.position
-	global_position.x = new_pos.x
-	global_position.y = new_pos.y-32
+		global_position.x = new_pos.x+45
+	scale = Vector2(1,1)
+	global_position.y = new_pos.y-45
