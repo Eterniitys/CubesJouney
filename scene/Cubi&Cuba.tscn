@@ -34,7 +34,6 @@ z_index = 100
 script = ExtResource( 1 )
 
 [node name="cubi" type="KinematicBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( -44, -45 )
 collision_layer = 1024
 collision_mask = 2083
@@ -58,7 +57,6 @@ position = Vector2( -4.91738e-07, 0 )
 shape = SubResource( 1 )
 
 [node name="lbl_state" type="Label" parent="cubi"]
-visible = false
 margin_left = -20.0
 margin_top = 10.0
 margin_right = 20.0
@@ -68,7 +66,6 @@ valign = 1
 autowrap = true
 
 [node name="name" type="Label" parent="cubi"]
-visible = false
 anchor_right = 1.0
 margin_left = -5.0
 margin_top = -25.0
@@ -78,7 +75,6 @@ text = "Cubi"
 align = 1
 
 [node name="carried" type="Label" parent="cubi"]
-visible = false
 margin_left = -25.0
 margin_top = -10.0
 margin_right = 25.0
@@ -150,7 +146,6 @@ region_rect = Rect2( 128, 64, 64, 64 )
 shape = SubResource( 6 )
 
 [node name="lbl_state" type="Label" parent="cuba"]
-visible = false
 margin_left = -20.0
 margin_top = 10.0
 margin_right = 20.0
@@ -160,7 +155,6 @@ valign = 1
 autowrap = true
 
 [node name="name" type="Label" parent="cuba"]
-visible = false
 margin_left = -5.0
 margin_top = -25.0
 margin_right = 26.0
@@ -168,7 +162,6 @@ margin_bottom = -11.0
 text = "Cuba"
 
 [node name="carried" type="Label" parent="cuba"]
-visible = false
 margin_left = -25.0
 margin_top = -10.0
 margin_right = 25.0
