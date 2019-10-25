@@ -1,5 +1,11 @@
 extends "res://code/playersScript.gd"
 
+func prepare_scale():
+	scale_up_x = 1
+	scale_up_y = 1
+	scale_down_x = 3
+	scale_down_y = 1/float(3)
+
 func call_shadow():
 	shadow.set_collision_layer_bit(11,false)
 	shadow.get_node("sprite").texture = $Sprite.texture
@@ -26,11 +32,14 @@ func _on_top_detection_body_entered(body):
 	var actual_dim_y = 2 * $collision.shape.extents.y * scale.y
 	if actual_dim_y < 32:
 		scale_up_y = 31/(2 * $collision.shape.extents.y)
+		scale_up_x = scale.x
 	else:
 		scale_up_y = 1
+		scale_up_x = 1
 
 func _on_top_detection_body_exited(body):
 	scale_up_y = 1
+	scale_up_x = 1
 
 func side_collision_synthetize():
 	var actual_dim_x = 2 * $collision.shape.extents.x * scale.x
@@ -45,8 +54,10 @@ func side_collision_synthetize():
 			scale_down_x = 159/(2 * $collision.shape.extents.y)
 		else:
 			scale_down_x = 3
+		scale_down_y = scale.y
 	else:
 		scale_down_x = 3
+		scale_down_y = 1/float(3)
 
 func _on_left_collision_body_entered(body):
 	side_collide[0] += 1

@@ -20,16 +20,17 @@ var state
 var snap
 # Scaling cube datas
 var scale_speed = 0.15
-export(float) var scale_up_x
-export(float) var scale_up_y
-export(float) var scale_down_x
-export(float) var scale_down_y
+var scale_up_x = 1
+var scale_up_y = 1
+var scale_down_x = 1
+var scale_down_y = 1
 #
 var side_collide = [0,0]
 func _ready():
 	shadow = get_parent().get_node("cubx_shadow")
 	get_parent().get_node(theOtherName).connect("wanna_jump", self, "_"+theOtherName+"_wanna_jump")
 	change_state(IDLE)
+	prepare_scale()
 
 func _physics_process(delta):
 	# Gravity
@@ -129,3 +130,6 @@ func reset_pos():
 		global_position.x = new_pos.x+45
 	scale = Vector2(1,1)
 	global_position.y = new_pos.y-45
+
+func prepare_scale():
+	pass

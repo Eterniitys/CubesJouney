@@ -1,19 +1,8 @@
 extends Node2D
 
-# Cubi variables
+# Cubi&Cuba
 onready var cubi = $cubi
-export(float) var cubi_up_x = 3
-export(float) var cubi_up_y = 1/float(3)
-export(float) var cubi_down_x = 1
-export(float) var cubi_down_y = 1/float(3)
-
-# Cuba variables
 onready var cuba = $cuba
-export(float) var cuba_up_x = 1
-export(float) var cuba_up_y = 1/float(3)
-export(float) var cuba_down_x = 1
-export(float) var cuba_down_y = 3
-
 # Cam
 export(float) var ZOOM_MIN = 1
 export(float) var ZOOM_MAX = 1.5
