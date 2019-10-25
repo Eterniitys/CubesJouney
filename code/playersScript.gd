@@ -20,11 +20,12 @@ var state
 var snap
 # Scaling cube datas
 var scale_speed = 0.15
-var scale_min_x
-var scale_min_y
-var delta_scale_x
-var delta_scale_y
-
+export(float) var scale_up_x
+export(float) var scale_up_y
+export(float) var scale_down_x
+export(float) var scale_down_y
+#
+var side_collide = [0,0]
 func _ready():
 	shadow = get_parent().get_node("cubx_shadow")
 	get_parent().get_node(theOtherName).connect("wanna_jump", self, "_"+theOtherName+"_wanna_jump")
@@ -110,12 +111,12 @@ func transform(delta):
 		vel.y = -200
 	
 	if Input.is_action_pressed("transform_down_"+myName):
-		scale.x = lerp (scale.x, scale_min_x, scale_speed)
-		scale.y = lerp (scale.y, scale_min_y, scale_speed)
+		scale.x = lerp (scale.x, scale_down_x, scale_speed)
+		scale.y = lerp (scale.y, scale_down_y, scale_speed)
 	
 	if Input.is_action_pressed("transform_up_"+myName):
-		scale.x = lerp (scale.x, scale_min_x + delta_scale_x, scale_speed)
-		scale.y = lerp (scale.y, scale_min_y + delta_scale_y, scale_speed)
+		scale.x = lerp (scale.x, scale_up_x, scale_speed)
+		scale.y = lerp (scale.y, scale_up_y, scale_speed)
 
 func reset_pos():
 	var new_pos

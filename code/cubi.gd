@@ -1,11 +1,4 @@
-extends "res://code/tuto/playersScript.gd"
-
-var max_tunnel_height = -1
-var max_tunnel_width = -1
-var max_width = -1
-var max_height = -1
-var right_collision = false
-var left_collision = false
+extends "res://code/playersScript.gd"
 
 func call_shadow():
 	shadow.set_collision_layer_bit(11,false)
@@ -30,36 +23,43 @@ func _on_feetsDetection_body_exited(body):
 		$carried.text = ""
 
 func _on_top_detection_body_entered(body):
-	if (scale.y < 0.5):
-		max_tunnel_height = 0.5
-		max_tunnel_width = 2
+	var actual_dim_y = 2 * $collision.shape.extents.y * scale.y
+	if actual_dim_y < 32:
+		scale_up_y = 31/(2 * $collision.shape.extents.y)
+	else:
+		scale_up_y = 1
 
 func _on_top_detection_body_exited(body):
-	max_tunnel_height = -1
-	max_tunnel_width = -1
+	scale_up_y = 1
+
+func side_collision_synthetize():
+	var actual_dim_x = 2 * $collision.shape.extents.x * scale.x
+	if !(0 in side_collide):
+		if actual_dim_x < 64:
+			scale_down_x = 63/(2 * $collision.shape.extents.y)
+		elif actual_dim_x < 96:
+			scale_down_x = 95/(2 * $collision.shape.extents.y)
+		elif actual_dim_x < 128:
+			scale_down_x = 127/(2 * $collision.shape.extents.y)
+		elif actual_dim_x < 160:
+			scale_down_x = 159/(2 * $collision.shape.extents.y)
+		else:
+			scale_down_x = 3
+	else:
+		scale_down_x = 3
 
 func _on_left_collision_body_entered(body):
-	left_collision  = true
-	if (self.scale.x <= 64 / ($collision.shape.extents.x*2)):
-		max_width = 64 / ($collision.shape.extents.x*2)
-		max_height = 1
-	elif (self.scale.x <= 128 / ($collision.shape.extents.x*2)):
-		max_width = 128 / ($collision.shape.extents.x*2)
-		max_height = 0.5
-		
-func _on_left_collision_body_exited(body):
-	left_collision = false
-	max_width = -1
+	side_collide[0] += 1
+	side_collision_synthetize()
 
 func _on_right_collision_body_entered(body):
-	right_collision = true
-	if (self.scale.x <= 64 / ($collision.shape.extents.x*2)):
-		max_width = 64 / ($collision.shape.extents.x*2)
-		max_height = 1
-	elif (self.scale.x <= 128 / ($collision.shape.extents.x*2)):
-		max_width = 128 / ($collision.shape.extents.x*2)
-		max_height = 0.5
+	side_collide[1] += 1
+	side_collision_synthetize()
+
+func _on_left_collision_body_exited(body):
+	side_collide[0] -= 1
+	side_collision_synthetize()
 
 func _on_right_collision_body_exited(body):
-	right_collision = false
-	max_width = -1
+	side_collide[1] -= 1
+	side_collision_synthetize()

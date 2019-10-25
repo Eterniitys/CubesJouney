@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://code/Players.gd" type="Script" id=1]
 [ext_resource path="res://code/cubi.gd" type="Script" id=2]
@@ -14,26 +14,40 @@ extents = Vector2( 30, 30 )
 extents = Vector2( 30, 1 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 15, 30 )
+extents = Vector2( 25, 10 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 15, 15 )
+extents = Vector2( 5, 15 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 15, 15 )
+extents = Vector2( 5, 15 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 30, 30 )
 
 [sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 15, 15 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 15, 15 )
+
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 30, 1 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 25, 5 )
 
 [node name="Players" type="Node2D"]
 position = Vector2( -1, 0 )
 z_index = 100
 script = ExtResource( 1 )
+cubi_up_y = 0.333
+cubi_down_y = 1.0
+cuba_up_y = 1.0
+cuba_down_x = 0.333
 
 [node name="cubi" type="KinematicBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( -44, -45 )
 collision_layer = 1024
 collision_mask = 2083
@@ -43,6 +57,10 @@ __meta__ = {
 }
 myName = "cubi"
 theOtherName = "cuba"
+scale_up_x = 1.0
+scale_up_y = 1.0
+scale_down_x = 3.0
+scale_down_y = 0.333
 
 [node name="Sprite" type="Sprite" parent="cubi"]
 position = Vector2( -1.51992e-05, -1.99676e-05 )
@@ -82,6 +100,7 @@ margin_bottom = 4.0
 
 [node name="feetsDetection" type="Area2D" parent="cubi"]
 editor/display_folded = true
+visible = false
 position = Vector2( 0, 29.9999 )
 collision_layer = 0
 collision_mask = 2048
@@ -94,7 +113,8 @@ shape = SubResource( 2 )
 
 [node name="top_detection" type="Area2D" parent="cubi"]
 editor/display_folded = true
-position = Vector2( 0, -60 )
+visible = false
+position = Vector2( 0, -30 )
 collision_layer = 0
 __meta__ = {
 "_edit_group_": true
@@ -104,6 +124,8 @@ __meta__ = {
 shape = SubResource( 3 )
 
 [node name="left_collision" type="Area2D" parent="cubi"]
+editor/display_folded = true
+visible = false
 position = Vector2( -30, 0 )
 collision_layer = 0
 __meta__ = {
@@ -114,6 +136,8 @@ __meta__ = {
 shape = SubResource( 4 )
 
 [node name="right_collision" type="Area2D" parent="cubi"]
+editor/display_folded = true
+visible = false
 position = Vector2( 30, 0 )
 collision_layer = 0
 __meta__ = {
@@ -124,7 +148,8 @@ __meta__ = {
 shape = SubResource( 5 )
 
 [node name="cuba" type="KinematicBody2D" parent="."]
-position = Vector2( 46, -195 )
+editor/display_folded = true
+position = Vector2( 46, -45 )
 collision_layer = 2048
 collision_mask = 1059
 script = ExtResource( 4 )
@@ -133,6 +158,10 @@ __meta__ = {
 }
 myName = "cuba"
 theOtherName = "cubi"
+scale_up_x = 0.333
+scale_up_y = 3.0
+scale_down_x = 1.0
+scale_down_y = 1.0
 
 [node name="Sprite" type="Sprite" parent="cuba"]
 position = Vector2( -1.52588e-05, -1.90735e-05 )
@@ -142,7 +171,7 @@ vframes = 3
 hframes = 2
 region_rect = Rect2( 128, 64, 64, 64 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="cuba"]
+[node name="collision" type="CollisionShape2D" parent="cuba"]
 shape = SubResource( 6 )
 
 [node name="lbl_state" type="Label" parent="cuba"]
@@ -167,7 +196,33 @@ margin_top = -10.0
 margin_right = 25.0
 margin_bottom = 4.0
 
+[node name="left_collision" type="Area2D" parent="cuba"]
+editor/display_folded = true
+visible = false
+position = Vector2( -30, 0 )
+collision_layer = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cuba/left_collision"]
+shape = SubResource( 7 )
+
+[node name="right_collision" type="Area2D" parent="cuba"]
+editor/display_folded = true
+visible = false
+position = Vector2( 30, 0 )
+collision_layer = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cuba/right_collision"]
+shape = SubResource( 8 )
+
 [node name="feetsDetection" type="Area2D" parent="cuba"]
+editor/display_folded = true
+visible = false
 position = Vector2( 0, 29.9999 )
 collision_layer = 0
 collision_mask = 1024
@@ -176,7 +231,19 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cuba/feetsDetection"]
-shape = SubResource( 7 )
+shape = SubResource( 9 )
+
+[node name="top_detection" type="Area2D" parent="cuba"]
+editor/display_folded = true
+visible = false
+position = Vector2( 0, -30 )
+collision_layer = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cuba/top_detection"]
+shape = SubResource( 10 )
 
 [node name="cubx_shadow" parent="." instance=ExtResource( 6 )]
 
@@ -191,5 +258,11 @@ drag_margin_h_enabled = false
 [connection signal="body_exited" from="cubi/left_collision" to="cubi" method="_on_left_collision_body_exited"]
 [connection signal="body_entered" from="cubi/right_collision" to="cubi" method="_on_right_collision_body_entered"]
 [connection signal="body_exited" from="cubi/right_collision" to="cubi" method="_on_right_collision_body_exited"]
+[connection signal="body_entered" from="cuba/left_collision" to="cuba" method="_on_left_collision_body_entered"]
+[connection signal="body_exited" from="cuba/left_collision" to="cuba" method="_on_left_collision_body_exited"]
+[connection signal="body_entered" from="cuba/right_collision" to="cuba" method="_on_right_collision_body_entered"]
+[connection signal="body_exited" from="cuba/right_collision" to="cuba" method="_on_right_collision_body_exited"]
 [connection signal="body_entered" from="cuba/feetsDetection" to="cuba" method="_on_feetsDetection_body_entered"]
 [connection signal="body_exited" from="cuba/feetsDetection" to="cuba" method="_on_feetsDetection_body_exited"]
+[connection signal="body_entered" from="cuba/top_detection" to="cuba" method="_on_top_detection_body_entered"]
+[connection signal="body_exited" from="cuba/top_detection" to="cuba" method="_on_top_detection_body_exited"]

@@ -2,17 +2,17 @@ extends Node2D
 
 # Cubi variables
 onready var cubi = $cubi
-export(float) var cubi_min_x = 1
-export(float) var cubi_min_y = 1
-export(float) var cubi_delta_x = 2
-export(float) var cubi_delta_y = -0.65
+export(float) var cubi_up_x = 3
+export(float) var cubi_up_y = 1/float(3)
+export(float) var cubi_down_x = 1
+export(float) var cubi_down_y = 1/float(3)
 
 # Cuba variables
 onready var cuba = $cuba
-export(float) var cuba_min_x = 1
-export(float) var cuba_min_y = 1
-export(float) var cuba_delta_x = -0.65
-export(float) var cuba_delta_y = 2
+export(float) var cuba_up_x = 1
+export(float) var cuba_up_y = 1/float(3)
+export(float) var cuba_down_x = 1
+export(float) var cuba_down_y = 3
 
 # Cam
 export(float) var ZOOM_MIN = 1
@@ -20,18 +20,6 @@ export(float) var ZOOM_MAX = 1.5
 var cam_lst = []
 
 func _ready():
-	
-	# set scale Cubi
-	cubi.delta_scale_x = cubi_delta_x
-	cubi.delta_scale_y = cubi_delta_y
-	cubi.scale_min_x = cubi_min_x
-	cubi.scale_min_y = cubi_min_y
-	
-	# set scale Cuba
-	cuba.delta_scale_x = cuba_delta_x
-	cuba.delta_scale_y = cuba_delta_y
-	cuba.scale_min_x = cuba_min_x
-	cuba.scale_min_y = cuba_min_y
 	
 	# set cam limit
 	var ref_tilemap = get_parent().get_node("TileMaps/x64_gd_tiles")

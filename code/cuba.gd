@@ -1,5 +1,4 @@
-extends "res://code/tuto/playersScript.gd"
-
+extends "res://code/playersScript.gd"
 
 func call_shadow():
 	shadow.set_collision_layer_bit(10,false)
@@ -16,9 +15,48 @@ func _cubi_wanna_jump():
 func _on_feetsDetection_body_entered(body):
 	if body.name == "cubi":
 		carried = true
-		$carried.text="carried" 
+		$carried.text = "carried" 
 
 func _on_feetsDetection_body_exited(body):
 	if body.name == "cubi":
 		carried = false
-		$carried.text=""
+		$carried.text = ""
+
+func _on_top_detection_body_entered(body):
+	var actual_dim_y = 2 * $collision.shape.extents.y * scale.y
+	if actual_dim_y > 160:
+		scale_up_y = 3
+	elif actual_dim_y > 128:
+		scale_up_y = 159/(2 * $collision.shape.extents.y)
+	elif actual_dim_y > 96:
+		scale_up_y = 127/(2 * $collision.shape.extents.y)
+	elif actual_dim_y > 64:
+		scale_up_y = 95/(2 * $collision.shape.extents.y)
+	else:
+		scale_up_y = 63/(2 * $collision.shape.extents.y)
+
+func _on_top_detection_body_exited(body):
+	scale_up_y = 3
+
+func side_collision_synthetize():
+	var actual_dim_x = 2 * $collision.shape.extents.x * scale.x
+	if !(0 in side_collide) and actual_dim_x < 32:
+		scale_down_x = 31/(2 * $collision.shape.extents.y)
+	else:
+		scale_down_x = 1
+
+func _on_left_collision_body_entered(body):
+	side_collide[0] += 1
+	side_collision_synthetize()
+
+func _on_right_collision_body_entered(body):
+	side_collide[1] += 1
+	side_collision_synthetize()
+
+func _on_left_collision_body_exited(body):
+	side_collide[0] -= 1
+	side_collision_synthetize()
+
+func _on_right_collision_body_exited(body):
+	side_collide[1] -= 1
+	side_collision_synthetize()
