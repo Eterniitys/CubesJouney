@@ -14,18 +14,20 @@ var carried = false
 signal wanna_jump
 # Shadow
 var shadow
+export var can_use_shadow = false
 #
+var side_collide = [0,0]
 var reset_timer
 var state
 var snap
-# Scaling cube datas
+# Scaling cube settings
 var scale_speed = 0.15
 var scale_up_x = 1
 var scale_up_y = 1
 var scale_down_x = 1
 var scale_down_y = 1
+export var can_scale = false
 #
-var side_collide = [0,0]
 func _ready():
 	shadow = get_parent().get_node("cubx_shadow")
 	get_parent().get_node(theOtherName).connect("wanna_jump", self, "_"+theOtherName+"_wanna_jump")
@@ -48,9 +50,10 @@ func _physics_process(delta):
 		reset_timer=0
 		movements(delta)
 	# Transform
-	transform(delta)
+	if can_scale:
+		transform(delta)
 	# Shadow power
-	if Input.is_action_just_pressed("shadow_"+myName):
+	if can_use_shadow and Input.is_action_just_pressed("shadow_"+myName):
 		call_shadow()
 	# Going through tiles (allowing it)
 	travers()
@@ -93,13 +96,19 @@ func change_state(new_state):
 		IDLE:
 			$lbl_state.text="idle"
 			snap = Vector2.DOWN * 32
-			$Sprite.frame = 2
+			if can_scale:
+				$Sprite.frame = 2
+			else:
+				$Sprite.frame = 0
 		TRANSLATE:
 			$lbl_state.text="translate"
 		JUMP:
 			$lbl_state.text="jump"
 			snap = Vector2.ZERO
-			$Sprite.frame = 3
+			if can_scale:
+				$Sprite.frame = 3
+			else:
+				$Sprite.frame = 1
 
 func travers ():
 	if Input.is_action_just_pressed("travers_"+myName):
