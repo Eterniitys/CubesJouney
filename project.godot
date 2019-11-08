@@ -148,6 +148,7 @@ resetPos={
 2d_physics/layer_2="moving_platforms"
 2d_physics/layer_6="crossable_platform"
 2d_physics/layer_7="checkpoint"
+2d_physics/layer_8="items"
 2d_physics/layer_11="Cubi"
 2d_physics/layer_12="Cuba"
 

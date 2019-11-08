@@ -4,6 +4,9 @@ enum {NONE,CUBI,CUBA,BOTH}
 var state = NONE
 var sprite_dim = Vector2(64,96)
 
+func init(type, pos):
+	position = pos + Vector2(sprite_dim.x/2,sprite_dim.y)
+
 func _on_checkpointArea_body_entered(body):
 	if body.name == "cubi":
 		LIFELINE.set_checkpoint_cubi(self)

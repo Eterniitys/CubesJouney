@@ -5,8 +5,6 @@
 [ext_resource path="res://scene/tuto/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scene/tuto/grousk.tscn" type="PackedScene" id=4]
 
-
-
 [node name="defaultScene" type="Node2D"]
 script = ExtResource( 1 )
 

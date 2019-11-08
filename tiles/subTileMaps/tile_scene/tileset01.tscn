@@ -7,39 +7,7 @@ extents = Vector2( 32, 32 )
 
 [node name="tileset01" type="Node2D"]
 
-[node name="grass09" type="Sprite" parent="."]
-editor/display_folded = true
-position = Vector2( 64, 64 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 64, 64 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="StaticBody2D" type="StaticBody2D" parent="grass09"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="grass09/StaticBody2D"]
-shape = SubResource( 1 )
-one_way_collision = true
-
-[node name="grass10" type="Sprite" parent="."]
-editor/display_folded = true
-position = Vector2( 64, 64 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 64, 64 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="StaticBody2D" type="StaticBody2D" parent="grass10"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="grass10/StaticBody2D"]
-shape = SubResource( 1 )
-one_way_collision = true
-
-[node name="grass05" type="Sprite" parent="."]
+[node name="tile05" type="Sprite" parent="."]
 editor/display_folded = true
 position = Vector2( 64, 160 )
 texture = ExtResource( 1 )
@@ -49,14 +17,14 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="grass05"]
+[node name="StaticBody2D" type="StaticBody2D" parent="tile05"]
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="grass05/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tile05/StaticBody2D"]
 shape = SubResource( 1 )
 
-[node name="grass04" type="Sprite" parent="."]
+[node name="tile04" type="Sprite" parent="."]
 editor/display_folded = true
 position = Vector2( 352, 64 )
 texture = ExtResource( 1 )
@@ -66,12 +34,12 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="grass04"]
+[node name="StaticBody2D" type="StaticBody2D" parent="tile04"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="grass04/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tile04/StaticBody2D"]
 shape = SubResource( 1 )
 
-[node name="grass08" type="Sprite" parent="."]
+[node name="tile08" type="Sprite" parent="."]
 editor/display_folded = true
 position = Vector2( 352, 160 )
 texture = ExtResource( 1 )
@@ -81,27 +49,12 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="grass08"]
+[node name="StaticBody2D" type="StaticBody2D" parent="tile08"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="grass08/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tile08/StaticBody2D"]
 shape = SubResource( 1 )
 
-[node name="grass02" type="Sprite" parent="."]
-editor/display_folded = true
-position = Vector2( 160, 64 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 64, 0, 64, 64 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="StaticBody2D" type="StaticBody2D" parent="grass02"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="grass02/StaticBody2D"]
-shape = SubResource( 1 )
-
-[node name="grass07" type="Sprite" parent="."]
+[node name="tile07" type="Sprite" parent="."]
 editor/display_folded = true
 position = Vector2( 160, 160 )
 texture = ExtResource( 1 )
@@ -111,12 +64,13 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="grass07"]
+[node name="StaticBody2D" type="StaticBody2D" parent="tile07"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="grass07/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tile07/StaticBody2D"]
 shape = SubResource( 1 )
 
-[node name="grass03" type="Sprite" parent="."]
+[node name="tile03" type="Sprite" parent="."]
+editor/display_folded = true
 position = Vector2( 256, 64 )
 texture = ExtResource( 1 )
 region_enabled = true
@@ -125,12 +79,12 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="grass03"]
+[node name="StaticBody2D" type="StaticBody2D" parent="tile03"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="grass03/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tile03/StaticBody2D"]
 shape = SubResource( 1 )
 
-[node name="grass06" type="Sprite" parent="."]
+[node name="tile06" type="Sprite" parent="."]
 editor/display_folded = true
 position = Vector2( 256, 160 )
 texture = ExtResource( 1 )
@@ -140,7 +94,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="grass06"]
+[node name="StaticBody2D" type="StaticBody2D" parent="tile06"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="grass06/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tile06/StaticBody2D"]
 shape = SubResource( 1 )

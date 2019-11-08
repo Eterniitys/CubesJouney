@@ -1,14 +1,16 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://code/deadZone.gd" type="Script" id=1]
+[ext_resource path="res://img/Tilemap_BoxDev.png" type="Texture" id=2]
 
 [node name="deadZone" type="Area2D"]
-position = Vector2( 1152, 896 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -16, -16, 16, -16, 16, 16, -16, 16 )
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 80, 16, 32, 32 )
 [connection signal="body_entered" from="." to="." method="_on_deadZone_body_entered"]
