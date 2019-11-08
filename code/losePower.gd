@@ -1,8 +1,10 @@
 extends Area2D
 
 var textures = {
-	'lose' : "res://img/Tuto/Coins/X1.png",
-	"get" : "res://img/Tuto/Coins/X10.png"
+	'loseShadow' : "res://img/Tuto/Coins/HP.png",
+	'loseScale' : "res://img/Tuto/Coins/X10.png",
+	"getShadow" : "res://img/Tuto/Coins/MP.png",
+	"getScale" : "res://img/Tuto/Coins/X1.png"
 }
 
 var _type
@@ -14,6 +16,17 @@ func init(type, pos):
 
 
 func _on_losePower_body_entered(body):
+	if (_type == "getShadow"):
+		body.can_use_shadow = true
+	if (_type == "getScale"): 
+		body.can_scale = true
+	if (_type == "loseShadow"): 
+		body.can_use_shadow = false
+	if (_type == "loseScale"): 
+		body.can_scale = false
+		
+	body.change_state(body.IDLE)
+	
 	$CollisionShape2D.disabled = true
 	$Tween.interpolate_property(
 		self,

@@ -5,8 +5,10 @@ onready var itm = preload("res://scene/prefab/losePower.tscn")
 onready var items = {
 	"checkpoint" : preload("res://scene/prefab/checkpoint.tscn"),
 	"death_zone": preload("res://scene/prefab/deadZone.tscn"),
-	"lose": preload("res://scene/prefab/losePower.tscn"),
-	"get": preload("res://scene/prefab/losePower.tscn")
+	"loseShadow": preload("res://scene/prefab/losePower.tscn"),
+	"loseScale": preload("res://scene/prefab/losePower.tscn"),
+	"getShadow": preload("res://scene/prefab/losePower.tscn"),
+	"getScale": preload("res://scene/prefab/losePower.tscn")
 }
 
 func _ready():
@@ -14,8 +16,8 @@ func _ready():
 	LIFELINE.set_checkpoint_cuba($initial)
 	LIFELINE.set_checkpoint_cubi($initial)
 	spawn_items()
-	
-	
+
+
 func spawn_items():
 	var tm = $TileMaps/tiles_item
 	for cell in tm.get_used_cells():
@@ -28,4 +30,3 @@ func spawn_items():
 			i.init(name, pos)
 			add_child(i)
 	tm.visible = false
-		

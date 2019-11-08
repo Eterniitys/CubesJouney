@@ -7,19 +7,19 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="checkpoint" type="Sprite" parent="."]
-position = Vector2( 48, 64 )
+position = Vector2( 32, 64 )
 texture = ExtResource( 1 )
 vframes = 2
 hframes = 2
 frame = 3
 
-[node name="lose" type="Sprite" parent="."]
+[node name="getScale" type="Sprite" parent="."]
 position = Vector2( 160, 32 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( -1, 0, 32, 32 )
 
-[node name="get" type="Sprite" parent="."]
+[node name="loseScale" type="Sprite" parent="."]
 position = Vector2( 112, 32 )
 texture = ExtResource( 2 )
 region_enabled = true
@@ -30,3 +30,15 @@ position = Vector2( 208, 32 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 80, 16, 32, 32 )
+
+[node name="getShadow" type="Sprite" parent="."]
+position = Vector2( 112, 80 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 96, 0, 32, 32 )
+
+[node name="loseShadow" type="Sprite" parent="."]
+position = Vector2( 160, 80 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 64, 0, 32, 32 )
