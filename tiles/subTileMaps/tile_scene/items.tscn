@@ -5,16 +5,17 @@
 [ext_resource path="res://img/Tilemap_BoxDev.png" type="Texture" id=3]
 
 [node name="Node2D" type="Node2D"]
+scale = Vector2( 1.00821, 1.00554 )
 
 [node name="checkpoint" type="Sprite" parent="."]
-position = Vector2( 32, 64 )
+position = Vector2( 47.6093, 63.6471 )
 texture = ExtResource( 1 )
 vframes = 2
 hframes = 2
 frame = 3
 
 [node name="getScale" type="Sprite" parent="."]
-position = Vector2( 160, 32 )
+position = Vector2( 158.698, 31.8236 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( -1, 0, 32, 32 )
