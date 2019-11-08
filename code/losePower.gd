@@ -4,7 +4,7 @@ var textures = {
 	'loseShadow' : "res://img/Tuto/Coins/HP.png",
 	'loseScale' : "res://img/Tuto/Coins/X10.png",
 	"getShadow" : "res://img/Tuto/Coins/MP.png",
-	"getScale" : "res://img/Tuto/Coins/X1.png"
+	"getScale" : "res://img/getScaleHight.png"
 }
 
 var _type
@@ -40,8 +40,8 @@ func _on_losePower_body_entered(body):
 	$Tween.interpolate_property(
 		self,
 		"scale",
-		Vector2(1,1),
-		Vector2(1.5,1.5),
+		Vector2(0.5,0.5),
+		Vector2(0.7,0.7),
 		1,
 		Tween.TRANS_BACK,
 		Tween.EASE_IN_OUT)
