@@ -1,10 +1,14 @@
 extends Area2D
 
 var textures = {
-	'loseShadow' : "res://img/Tuto/Coins/HP.png",
-	'loseScale' : "res://img/Tuto/Coins/X10.png",
-	"getShadow" : "res://img/Tuto/Coins/MP.png",
-	"getScale" : "res://img/getScaleHight.png"
+	'loseShadowCubi' : "res://img/loseShadowCubi.png",
+	'loseShadowCuba' :"res://img/loseShadowCuba.png",
+	"getShadowCubi" : "res://img/getShadowCubi.png",
+	"getShadowCuba" : "res://img/getShadowCuba.png",
+	"getScale" : "res://img/getScaleHeight.png",
+	"getScaleWidth" : "res://img/getScaleWidth.png",
+	"loseScaleHeigth" :"res://img/loseScaleheight.png",
+	"loseScaleWidth" : "res://img/loseScaleWidth.png"
 }
 
 var _type
@@ -16,16 +20,36 @@ func init(type, pos):
 
 
 func _on_losePower_body_entered(body):
-	if (_type == "getShadow"):
-		body.can_use_shadow = true
-	if (_type == "getScale"): 
-		body.can_scale = true
-	if (_type == "loseShadow"): 
-		body.can_use_shadow = false
-	if (_type == "loseScale"): 
-		body.can_scale = false
+	var cubi = null
+	var cuba = null
+	if (body.name == "cuba"):
+		cubi = body.get_parent().get_node("cubi")
+		cuba = body
+	if (body.name == "cubi"):
+		cuba = body.get_parent().get_node("cuba")
+		cubi = body
 		
-	body.change_state(body.IDLE)
+	if (_type == "getShadowCubi"):
+		cubi.setShadow(true)
+	if (_type == "getShadowCuba"):
+		cuba.setShadow(true)
+	if (_type == "loseShadowCubi"):
+		cubi.setShadow(false)
+	if (_type == "loseShadowCuba"):
+		cuba.setShadow(false)
+	if (_type == "getScale"):
+		cuba.setScale(true)
+	if (_type == "getScaleWidth"):
+		cubi.setScale(true)
+	if (_type == "loseShadow"): 
+		body.setShadow(false)
+	if (_type == "loseScaleHeigth"): 
+		cuba.setScale(false)
+	if (_type == "loseScaleWidth"): 
+		cubi.setScale(false)
+			
+	cubi.change_state(body.IDLE)
+	cuba.change_state(body.IDLE)
 	
 	$CollisionShape2D.disabled = true
 	$Tween.interpolate_property(

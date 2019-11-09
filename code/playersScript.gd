@@ -142,3 +142,11 @@ func reset_pos():
 
 func prepare_scale():
 	pass
+	
+func setScale(body_can_scale):
+	if (body_can_scale == false):
+		self.scale = Vector2(1,1)
+	can_scale = body_can_scale
+	
+func setShadow(body_can_shadow):
+	can_use_shadow = body_can_shadow
