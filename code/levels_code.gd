@@ -9,7 +9,7 @@ onready var items = {
 	"loseScaleWidth": preload("res://scene/prefab/losePower.tscn"),
 	"getShadowCubi": preload("res://scene/prefab/losePower.tscn"),
 	"getShadowCuba": preload("res://scene/prefab/losePower.tscn"),
-	"getScale": preload("res://scene/prefab/losePower.tscn"),
+	"getScaleHeigth": preload("res://scene/prefab/losePower.tscn"),
 	"getScaleWidth": preload("res://scene/prefab/losePower.tscn")
 }
 

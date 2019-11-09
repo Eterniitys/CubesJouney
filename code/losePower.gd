@@ -5,7 +5,7 @@ var textures = {
 	'loseShadowCuba' :"res://img/loseShadowCuba.png",
 	"getShadowCubi" : "res://img/getShadowCubi.png",
 	"getShadowCuba" : "res://img/getShadowCuba.png",
-	"getScale" : "res://img/getScaleHeight.png",
+	"getScaleHeigth" : "res://img/getScaleHeight.png",
 	"getScaleWidth" : "res://img/getScaleWidth.png",
 	"loseScaleHeigth" :"res://img/loseScaleheight.png",
 	"loseScaleWidth" : "res://img/loseScaleWidth.png"
@@ -35,14 +35,14 @@ func _on_losePower_body_entered(body):
 		cuba.setShadow(true)
 	if (_type == "loseShadowCubi"):
 		cubi.setShadow(false)
+		cubi.shadow.global_position = Vector2.ZERO
 	if (_type == "loseShadowCuba"):
 		cuba.setShadow(false)
-	if (_type == "getScale"):
+		cuba.shadow.global_position = Vector2.ZERO
+	if (_type == "getScaleHeigth"):
 		cuba.setScale(true)
 	if (_type == "getScaleWidth"):
 		cubi.setScale(true)
-	if (_type == "loseShadow"): 
-		body.setShadow(false)
 	if (_type == "loseScaleHeigth"): 
 		cuba.setScale(false)
 	if (_type == "loseScaleWidth"): 
