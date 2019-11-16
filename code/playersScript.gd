@@ -11,7 +11,9 @@ const RESET_TIMER_MAX = 2
 enum {IDLE, TRANSLATE, JUMP}
 var vel = Vector2()
 var carried = false
+var move_with = false
 signal wanna_jump
+
 # Shadow
 var shadow
 export var can_use_shadow = false
@@ -60,23 +62,42 @@ func _physics_process(delta):
 	
 	# Moves applications
 	vel = move_and_slide_with_snap(vel, snap, UP)
-
+	
+	# stop moving with the other cube
+	if !carried and is_on_floor():
+		move_with = false
+		
+	# start moving with the other cube	
+	if carried :
+		move_with = true
+		
 func movements(delta):
 	var left = Input.is_action_pressed("left_"+myName)
 	var right = Input.is_action_pressed("right_"+myName)
-	# direction
-	if left and !right: vel.x = -MAX_SPEED 
-	elif right and !left: vel.x = MAX_SPEED
-	else: vel.x = 0
-	var jump = Input.is_action_just_pressed("jump_"+myName)
 	var support_on_floor = is_on_floor()
+	
+	# direction
+	if left and !right:
+		 vel.x = -MAX_SPEED
+		 move_with = false
+	elif right and !left:
+		vel.x = MAX_SPEED
+		move_with = false
+	elif move_with and !support_on_floor:
+		vel.x = get_parent().get_node(theOtherName).vel.x
+	else :
+		vel.x = 0
+		
+	var jump = Input.is_action_just_pressed("jump_"+myName)
+	
 	if carried and !get_parent().get_node(theOtherName).is_on_floor():
 		support_on_floor = false
+		
 	if jump and support_on_floor:
 		emit_signal("wanna_jump")
 		yield(get_tree().create_timer(0.02),"timeout")
 		vel.y = -JUMP_HEIGH
-
+		
 func call_shadow():
 	print_debug("call_shadow not defined")
 

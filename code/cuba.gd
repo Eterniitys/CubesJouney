@@ -21,13 +21,13 @@ func _cubi_wanna_jump():
 func _on_feetsDetection_body_entered(body):
 	if body.name == "cubi":
 		carried = true
-		$carried.text = "carried" 
+		$carried.text = "carried"
 
 func _on_feetsDetection_body_exited(body):
 	if body.name == "cubi":
 		carried = false
 		$carried.text = ""
-
+		
 func _on_top_detection_body_entered(body):
 	var actual_dim_y = 2 * $collision.shape.extents.y * scale.y
 	if actual_dim_y > 160:

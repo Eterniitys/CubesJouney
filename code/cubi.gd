@@ -22,7 +22,7 @@ func _on_feetsDetection_body_entered(body):
 	if body.name == "cuba":
 		carried = true
 		$carried.text = "carried"
-
+			
 func _on_feetsDetection_body_exited(body):
 	if body.name == "cuba":
 		carried = false
