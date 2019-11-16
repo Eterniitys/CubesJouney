@@ -29,6 +29,7 @@ tracks/0/keys = {
 }
 
 [node name="TitleScreen" type="Control"]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -42,7 +43,6 @@ margin_right = -120.0
 margin_bottom = -80.0
 
 [node name="Header" type="HBoxContainer" parent="Menu"]
-editor/display_folded = true
 margin_right = 1040.0
 margin_bottom = 96.0
 size_flags_stretch_ratio = 39.78
