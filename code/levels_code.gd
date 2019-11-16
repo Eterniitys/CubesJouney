@@ -25,7 +25,6 @@ func spawn_items():
 	for cell in tm.get_used_cells():
 		var id = tm.get_cellv(cell)
 		var name = tm.tile_set.tile_get_name(id)
-		print(name)
 		if name in items.keys():
 			var pos = tm.map_to_world(cell)
 			pos = pos + tm.position

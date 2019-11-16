@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="CubesJourney"
-run/main_scene="res://scene/levels/HubRoom.tscn"
+run/main_scene="res://scene/tittle_screen/TitleScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -25,8 +25,8 @@ LIFELINE="*res://code/Singleton/global.gd"
 
 [display]
 
-window/size/width=2048
-window/size/height=1024
+window/size/width=1280
+window/size/height=720
 
 [input]
 
@@ -157,5 +157,5 @@ resetPos={
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=1
 quality/2d/use_pixel_snap=true
-environment/default_clear_color=Color( 0.34902, 0.607843, 0.917647, 0.792157 )
+environment/default_clear_color=Color( 0.14902, 0.192157, 0.219608, 1 )
 environment/default_environment="res://default_env.tres"
