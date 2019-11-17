@@ -1,5 +1,5 @@
 extends Node2D
-
+#warning-ignore-all:unused_class_variable
 # Cubi&Cuba
 onready var cubi = $cubi
 onready var cuba = $cuba
@@ -19,6 +19,7 @@ func _ready():
 	$cam.limit_right = (used_zone.position.x + used_zone.size.x) * cell_size.x
 	$cam.limit_bottom = (used_zone.position.y + used_zone.size.y)  * cell_size.y
 
+#warning-ignore:unused_argument
 func _process(delta):
 	default_cam()
 

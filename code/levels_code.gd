@@ -21,7 +21,7 @@ func _ready():
 
 
 func spawn_items():
-	var tm = $TileMaps/tiles_item
+	var tm = $TileMaps/item_tiles
 	for cell in tm.get_used_cells():
 		var id = tm.get_cellv(cell)
 		var name = tm.tile_set.tile_get_name(id)

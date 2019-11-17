@@ -1,4 +1,5 @@
 extends "res://code/playersScript.gd"
+#warning-ignore-all:unused_argument
 
 func prepare_scale():
 	scale_up_x = 1/float(3)

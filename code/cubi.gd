@@ -1,4 +1,5 @@
 extends "res://code/playersScript.gd"
+#warning-ignore-all:unused_argument
 
 func prepare_scale():
 	scale_up_x = 1
@@ -18,11 +19,13 @@ func _cuba_wanna_jump():
 	if carried :
 		vel.y = -JUMP_HEIGH
 
+
 func _on_feetsDetection_body_entered(body):
 	if body.name == "cuba":
 		carried = true
 		$carried.text = "carried"
-			
+
+
 func _on_feetsDetection_body_exited(body):
 	if body.name == "cuba":
 		carried = false

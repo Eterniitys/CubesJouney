@@ -1,4 +1,6 @@
 extends KinematicBody2D
+#warning-ignore-all:unused_variable
+#warning-ignore-all:unused_argument
 export(String) var myName
 export(String) var theOtherName
 
@@ -17,7 +19,7 @@ signal wanna_jump
 # Shadow
 var shadow
 export var can_use_shadow = false
-#
+#warning-ignore:unused_class_variable
 var side_collide = [0,0]
 var reset_timer
 var state
@@ -32,6 +34,7 @@ export var can_scale = false
 #
 func _ready():
 	shadow = get_parent().get_node("cubx_shadow")
+	#warning-ignore:return_value_discarded
 	get_parent().get_node(theOtherName).connect("wanna_jump", self, "_"+theOtherName+"_wanna_jump")
 	change_state(IDLE)
 	prepare_scale()
@@ -70,7 +73,8 @@ func _physics_process(delta):
 	# start moving with the other cube	
 	if carried :
 		move_with = true
-		
+
+#warning-ignore:unused_argument
 func movements(delta):
 	var left = Input.is_action_pressed("left_"+myName)
 	var right = Input.is_action_pressed("right_"+myName)
@@ -137,6 +141,7 @@ func travers ():
 	if Input.is_action_just_released("travers_"+myName):
 		set_collision_mask_bit(5,true)
 
+#warning-ignore:unused_argument
 func transform(delta):
 	if Input.is_action_just_pressed("transform_down_"+myName) and is_on_floor() and (scale.y < 0.5) :
 		vel.y = -200

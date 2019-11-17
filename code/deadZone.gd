@@ -1,5 +1,6 @@
 extends Area2D
 
+#warning-ignore:unused_argument
 func init(name,pos):
 	position = pos + Vector2(16,16)
 

@@ -1,5 +1,5 @@
 extends Control
-
+#warning-ignore:return_value_discarded
 func _ready():
 	$Menu/CenterRow/Buttons/Play_button.grab_focus()
 	for button in $Menu/CenterRow/Buttons.get_children():
