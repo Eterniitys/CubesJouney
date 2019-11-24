@@ -1,3 +1,3 @@
 extends Button
 #warning-ignore:unused_class_variable
-export(PackedScene) var next_scene
+export(PackedScene) onready var next_scene
