@@ -14,7 +14,10 @@ func _on_exit_right_body_entered(body):
 	if (body.name == "cuba"):
 		cubaPresent = true
 	if (cubiPresent and cubaPresent):
-		get_tree().change_scene_to(next_scene)
+		if "HubDoor" in self.name:
+			get_tree().change_scene("res://scene/levels/HubRoom.tscn")
+		else:
+			get_tree().change_scene_to(next_scene)
 
 func _on_exit_right_body_exited(body):
 	if (body.name == "cubi"):
