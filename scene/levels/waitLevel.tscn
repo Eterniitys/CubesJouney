@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://code/levels_code.gd" type="Script" id=1]
 [ext_resource path="res://scene/prefab/checkpoint.tscn" type="PackedScene" id=2]
 [ext_resource path="res://tiles/TileMaps.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scene/Cubi&Cuba.tscn" type="PackedScene" id=4]
 
-[node name="Node2D" type="Node2D"]
+[node name="origineNode" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="initial" parent="." instance=ExtResource( 2 )]
@@ -18,4 +19,10 @@ tile_data = PoolIntArray( 0, 4, 0, 1, 4, 0, 2, 4, 0, 3, 4, 0, 4, 4, 0, 5, 4, 0, 
 [node name="item_tiles" parent="TileMaps" index="3"]
 format = 1
 
+[node name="Players" parent="." instance=ExtResource( 4 )]
+editor/display_folded = true
+position = Vector2( -384, -448 )
+
 [editable path="TileMaps"]
+
+[editable path="Players"]

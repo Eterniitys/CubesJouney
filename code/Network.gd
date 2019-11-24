@@ -3,7 +3,7 @@ extends Node
 const DEFAULT_IP = '127.0.0.1'
 const DEFAULT_PORT = 33221
 const MAX_PLAYERS = 2
-
+var actual_scene = ""
 #players on server
 var players = {}
 #new player info
@@ -17,7 +17,6 @@ func create_server(player_name):
 	peer.create_server(DEFAULT_PORT, MAX_PLAYERS)
 	#add peer to network
 	get_tree().set_network_peer(peer)
-
 
 func connect_to_server(player_name):
 	new_player_data.name = player_name
@@ -33,6 +32,7 @@ func _connected_to_server():
 	rpc("_send_player_info", get_tree().get_network_unique_id(),new_player_data)
 
 remote func _send_player_info(id_new_player, info_new_player):
+	var create_player = null
 	if get_tree().is_network_server():
 		for peer_id in players:
 			rpc_id(id_new_player,"_send_player_info",peer_id, players[peer_id])
@@ -40,12 +40,15 @@ remote func _send_player_info(id_new_player, info_new_player):
 	#add new player with all others
 	players[id_new_player] = info_new_player
 	#create new players
-	var create_player = load("res://player.tscn").instance()
-	create_player.name = str(id_new_player)
+	if is_network_master():
+		# TODO verifier le contenu de actual_scene -> signal 
+		create_player = get_node(actual_scene).get_node("Players").get_node("cubi")
+	else :
+		create_player = get_node(actual_scene).get_node("Players").get_node("cuba")
+	create_player.network_id = id_new_player
 	#this player is the master of himself
 	create_player.set_network_master(id_new_player)
-	get_tree().get_root().add_child(create_player)
-	create_player.init(info_new_player.name, info_new_player.position, info_new_player.scale)
-
-func update_position(id, position):
+	
+func update_position(id, position, scale):
 	players[id].position = position
+	players[id].scale = scale

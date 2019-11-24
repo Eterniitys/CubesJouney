@@ -31,6 +31,7 @@ var scale_up_y = 1
 var scale_down_x = 1
 var scale_down_y = 1
 export var can_scale = false
+var network_id = -1
 #
 func _ready():
 	shadow = get_parent().get_node("cubx_shadow")

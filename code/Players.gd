@@ -9,7 +9,6 @@ export(float) var ZOOM_MAX = 1.5
 var cam_lst = []
 
 func _ready():
-	
 	# set cam limit
 	var ref_tilemap = get_parent().get_node("TileMaps/x64_gd_tiles")
 	var used_zone = ref_tilemap.get_used_rect()

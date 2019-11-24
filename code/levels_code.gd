@@ -14,12 +14,21 @@ onready var items = {
 }
 
 func _ready():
+	NETWORK.actual_scene = get_path()
 	get_node("Players").position = $initial.position
 	LIFELINE.set_checkpoint_cuba($initial)
 	LIFELINE.set_checkpoint_cubi($initial)
 	spawn_items()
+	
+	var new_player = null
+	if is_network_master():
+		new_player = get_node("Players").get_node("cubi")
+	else : 
+		new_player = get_node("Players").get_node("cuba")
 
-
+	new_player.network_id = get_tree().get_network_unique_id()
+	new_player.set_network_master(get_tree().get_network_unique_id())
+	
 func spawn_items():
 	var tm = $TileMaps/item_tiles
 	for cell in tm.get_used_cells():
