@@ -1,8 +1,8 @@
 extends Control
 #warning-ignore:return_value_discarded
 func _ready():
-	$Menu/CenterRow/Buttons/Play_button.grab_focus()
-	for button in $Menu/CenterRow/Buttons.get_children():
+	#$Menu/Content/Buttons/Play_button.grab_focus()
+	for button in $Menu/Content/Buttons.get_children():
 		button.connect("pressed", self, "_on_button_pressed", [button.next_scene])
 
 func _on_button_pressed(scene_to_load):
