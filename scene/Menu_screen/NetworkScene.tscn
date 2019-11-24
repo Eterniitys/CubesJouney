@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scene/Menu_screen/MenuScreen.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scene/Menu_screen/buttons/ConnectToServer.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scene/Menu_screen/buttons/CreateServer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scene/Menu_screen/buttons/ReturnMenuButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scene/Menu_screen/NetworkScene.gd" type="Script" id=2]
+[ext_resource path="res://scene/Menu_screen/buttons/ConnectToServer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scene/Menu_screen/buttons/CreateServer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scene/Menu_screen/buttons/ReturnMenuButton.tscn" type="PackedScene" id=5]
 
-[node name="MenuScreen" index="0" instance=ExtResource( 1 )]
+[node name="MenuScreen" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
 
 [node name="Buttons" type="VBoxContainer" parent="Menu/Content" index="0"]
 margin_left = 220.0
@@ -44,20 +46,23 @@ text = "Port : 33221"
 align = 1
 valign = 1
 
-[node name="ConnectToServer" parent="Menu/Content/Buttons" index="1" instance=ExtResource( 2 )]
+[node name="ConnectToServer" parent="Menu/Content/Buttons" index="1" instance=ExtResource( 3 )]
 anchor_right = 0.0
 margin_top = 34.0
 margin_right = 600.0
 margin_bottom = 84.0
 
-[node name="CreateServer" parent="Menu/Content/Buttons" index="2" instance=ExtResource( 3 )]
+[node name="CreateServer" parent="Menu/Content/Buttons" index="2" instance=ExtResource( 4 )]
 anchor_right = 0.0
 margin_top = 94.0
 margin_right = 600.0
 margin_bottom = 144.0
 
-[node name="ReturnMenuButton" parent="Menu/Content/Buttons" index="3" instance=ExtResource( 4 )]
+[node name="ReturnMenuButton" parent="Menu/Content/Buttons" index="3" instance=ExtResource( 5 )]
 anchor_right = 0.0
 margin_top = 154.0
 margin_right = 600.0
 margin_bottom = 204.0
+[connection signal="pressed" from="Menu/Content/Buttons/ConnectToServer" to="." method="_on_ConnectToServer_pressed"]
+[connection signal="pressed" from="Menu/Content/Buttons/CreateServer" to="." method="_on_CreateServer_pressed"]
+[connection signal="pressed" from="Menu/Content/Buttons/ReturnMenuButton" to="." method="_on_ReturnMenuButton_pressed" binds= [ "" ]]
