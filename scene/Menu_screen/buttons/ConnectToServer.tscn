@@ -3,6 +3,7 @@
 [ext_resource path="res://scene/Menu_screen/buttons/Menu_button.tscn" type="PackedScene" id=1]
 
 [node name="ConnectToServer" index="0" instance=ExtResource( 1 )]
+script = null
 
 [node name="Label" parent="." index="0"]
 text = "Connect To Server"

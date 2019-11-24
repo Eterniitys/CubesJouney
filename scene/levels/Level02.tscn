@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://code/levels_code.gd" type="Script" id=1]
 [ext_resource path="res://scene/prefab/checkpoint.tscn" type="PackedScene" id=2]
 [ext_resource path="res://tiles/TileMaps.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scene/Cubi&Cuba.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scene/objects/button_platform.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scene/objects/scene_warp.tscn" type="PackedScene" id=6]
-[ext_resource path="res://img/misc/hub.png" type="Texture" id=7]
+[ext_resource path="res://scene/objects/HubDoor.tscn" type="PackedScene" id=6]
 
 [node name="level02" type="Node2D"]
 script = ExtResource( 1 )
@@ -68,11 +67,8 @@ position = Vector2( -48, 352 )
 [node name="button" parent="button_platform2" index="2"]
 position = Vector2( -80, -32 )
 
-[node name="exit" parent="." instance=ExtResource( 6 )]
+[node name="HubDoor" parent="." instance=ExtResource( 6 )]
 position = Vector2( 7520, 256 )
-
-[node name="Sprite" parent="exit/exit" index="1"]
-texture = ExtResource( 7 )
 
 [editable path="TileMaps"]
 
@@ -81,5 +77,3 @@ texture = ExtResource( 7 )
 [editable path="button_platform"]
 
 [editable path="button_platform2"]
-
-[editable path="exit"]

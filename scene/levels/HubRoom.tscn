@@ -30,7 +30,6 @@ editor/display_folded = true
 position = Vector2( -96, 0 )
 
 [node name="warp_level01" parent="." instance=ExtResource( 4 )]
-editor/display_folded = true
 position = Vector2( 544, 1536 )
 next_scene = ExtResource( 5 )
 
@@ -41,7 +40,6 @@ editor/display_folded = true
 texture = ExtResource( 6 )
 
 [node name="warp_level02" parent="." instance=ExtResource( 4 )]
-editor/display_folded = true
 position = Vector2( 800, 1536 )
 next_scene = ExtResource( 7 )
 
