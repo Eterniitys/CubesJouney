@@ -1,14 +1,14 @@
 extends Area2D
 
 var textures = {
-	'loseShadowCubi' : "res://img/loseShadowCubi.png",
-	'loseShadowCuba' :"res://img/loseShadowCuba.png",
-	"getShadowCubi" : "res://img/getShadowCubi.png",
-	"getShadowCuba" : "res://img/getShadowCuba.png",
-	"getScaleHeigth" : "res://img/getScaleHeight.png",
-	"getScaleWidth" : "res://img/getScaleWidth.png",
-	"loseScaleHeigth" :"res://img/loseScaleheight.png",
-	"loseScaleWidth" : "res://img/loseScaleWidth.png"
+	'loseShadowCubi' : "res://img/item/loseShadowCubi.png",
+	'loseShadowCuba' :"res://img/item/loseShadowCuba.png",
+	"getShadowCubi" : "res://img/item/getShadowCubi.png",
+	"getShadowCuba" : "res://img/item/getShadowCuba.png",
+	"getScaleHeigth" : "res://img/item/getScaleHeight.png",
+	"getScaleWidth" : "res://img/item/getScaleWidth.png",
+	"loseScaleHeigth" :"res://img/item/loseScaleheight.png",
+	"loseScaleWidth" : "res://img/item/loseScaleWidth.png"
 }
 
 var _type
