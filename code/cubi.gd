@@ -7,7 +7,7 @@ func prepare_scale():
 	scale_down_x = 3
 	scale_down_y = 1/float(3)
 
-func call_shadow():
+remotesync func call_shadow():
 	shadow.set_collision_layer_bit(11,false)
 	shadow.get_node("sprite").texture = $Sprite.texture
 	yield(get_tree().create_timer(0.01),"timeout")
@@ -15,16 +15,16 @@ func call_shadow():
 	shadow.scale = scale
 	shadow.position = position
 
-func _cuba_wanna_jump():
+remote func _cuba_wanna_jump():
+	if !is_network_master():
+		rpc("_cuba_wanna_jump")
 	if carried :
 		vel.y = -JUMP_HEIGH
-
 
 func _on_feetsDetection_body_entered(body):
 	if body.name == "cuba":
 		carried = true
 		$carried.text = "carried"
-
 
 func _on_feetsDetection_body_exited(body):
 	if body.name == "cuba":

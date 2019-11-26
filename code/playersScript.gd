@@ -1,7 +1,6 @@
 extends KinematicBody2D
 #warning-ignore-all:unused_variable
 #warning-ignore-all:unused_argument
-export(String) var myName
 export(String) var theOtherName
 
 const UP = Vector2.UP
@@ -11,7 +10,7 @@ const JUMP_HEIGH = 550
 const RESET_TIMER_MAX = 2
 # movement
 enum {IDLE, TRANSLATE, JUMP}
-var vel = Vector2()
+var vel = Vector2.ZERO
 var carried = false
 var move_with = false
 signal wanna_jump
@@ -31,9 +30,16 @@ var scale_up_y = 1
 var scale_down_x = 1
 var scale_down_y = 1
 export var can_scale = false
-var network_id = -1
+# Networking
+var network_id = 2
+puppet var puppet_position = Vector2.ZERO
+puppet var puppet_scale = Vector2(1,1)
+#puppet var puppet_velocity = Vector2.ZERO
 #
 func _ready():
+	puppet_position = position
+	puppet_scale = scale
+	
 	shadow = get_parent().get_node("cubx_shadow")
 	#warning-ignore:return_value_discarded
 	get_parent().get_node(theOtherName).connect("wanna_jump", self, "_"+theOtherName+"_wanna_jump")
@@ -59,8 +65,8 @@ func _physics_process(delta):
 	if can_scale:
 		transform(delta)
 	# Shadow power
-	if can_use_shadow and Input.is_action_just_pressed("shadow_"+myName):
-		call_shadow()
+	if is_network_master() and can_use_shadow and Input.is_action_just_pressed("shadow"):
+		rpc("call_shadow")
 	# Going through tiles (allowing it)
 	travers()
 	
@@ -70,21 +76,35 @@ func _physics_process(delta):
 	# stop moving with the other cube
 	if !carried and is_on_floor():
 		move_with = false
-		
-	# start moving with the other cube	
+	
+	# start moving with the other cube
 	if carried :
 		move_with = true
+	
+	# Network
+	$name.text = str(network_id)
+	if is_network_master():
+		rset_unreliable("puppet_position", position)
+		rset_unreliable("puppet_scale", scale)
+#		rset_unreliable("puppet_velocity", vel)
+	else:
+		position = puppet_position
+		scale = puppet_scale
+#		vel = puppet_velocity
+	
+	if get_tree().is_network_server():
+		pass#NETWORK.update_datas(self.network_id, position, scale, vel)
 
 #warning-ignore:unused_argument
-func movements(delta):
-	var left = Input.is_action_pressed("left_"+myName)
-	var right = Input.is_action_pressed("right_"+myName)
+master func movements(delta):
+	var left = Input.is_action_pressed("left")
+	var right = Input.is_action_pressed("right")
 	var support_on_floor = is_on_floor()
 	
 	# direction
 	if left and !right:
-		 vel.x = -MAX_SPEED
-		 move_with = false
+		vel.x = -MAX_SPEED
+		move_with = false
 	elif right and !left:
 		vel.x = MAX_SPEED
 		move_with = false
@@ -93,17 +113,17 @@ func movements(delta):
 	else :
 		vel.x = 0
 		
-	var jump = Input.is_action_just_pressed("jump_"+myName)
+	var jump = Input.is_action_just_pressed("jump")
 	
 	if carried and !get_parent().get_node(theOtherName).is_on_floor():
 		support_on_floor = false
 		
 	if jump and support_on_floor:
 		emit_signal("wanna_jump")
-		yield(get_tree().create_timer(0.02),"timeout")
+		yield(get_tree().create_timer(0.1),"timeout")
 		vel.y = -JUMP_HEIGH
-		
-func call_shadow():
+
+remotesync func call_shadow():
 	print_debug("call_shadow not defined")
 
 func manage_state():
@@ -136,29 +156,29 @@ func change_state(new_state):
 			else:
 				$Sprite.frame = 1
 
-func travers ():
-	if Input.is_action_just_pressed("travers_"+myName):
+master func travers():
+	if Input.is_action_just_pressed("travers"):
 		set_collision_mask_bit(5,false)
-	if Input.is_action_just_released("travers_"+myName):
+	if Input.is_action_just_released("travers"):
 		set_collision_mask_bit(5,true)
 
 #warning-ignore:unused_argument
-func transform(delta):
-	if Input.is_action_just_pressed("transform_down_"+myName) and is_on_floor() and (scale.y < 0.5) :
+master func transform(delta):
+	if Input.is_action_just_pressed("transform_down") and is_on_floor() and (scale.y < 0.5) :
 		vel.y = -200
 	
-	if Input.is_action_pressed("transform_down_"+myName):
+	if Input.is_action_pressed("transform_down"):
 		scale.x = lerp (scale.x, scale_down_x, scale_speed)
 		scale.y = lerp (scale.y, scale_down_y, scale_speed)
 	
-	if Input.is_action_pressed("transform_up_"+myName):
+	if Input.is_action_pressed("transform_up"):
 		scale.x = lerp (scale.x, scale_up_x, scale_speed)
 		scale.y = lerp (scale.y, scale_up_y, scale_speed)
 
 func reset_pos():
 	var new_pos
 	vel = Vector2.ZERO
-	if myName == "cubi":
+	if name == "cubi":
 		new_pos = LIFELINE.checkpoint_cubi.position
 		global_position.x = new_pos.x-45
 	else:
@@ -167,9 +187,6 @@ func reset_pos():
 	scale = Vector2(1,1)
 	global_position.y = new_pos.y-45
 
-func prepare_scale():
-	pass
-	
 func setScale(body_can_scale):
 	if (body_can_scale == false):
 		self.scale = Vector2(1,1)
@@ -177,3 +194,6 @@ func setScale(body_can_scale):
 	
 func setShadow(body_can_shadow):
 	can_use_shadow = body_can_shadow
+
+func prepare_scale():
+	print_debug("have to be redefinned")
