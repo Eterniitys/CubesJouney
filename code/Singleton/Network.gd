@@ -19,15 +19,15 @@ func create_server(player_name):
 	get_tree().set_network_peer(peer)
 
 func connect_to_server(player_name, desired_ip):
-	var used_ip = DEFAULT_IP
-	if desired_ip != "127.0.0.1" && desired_ip != "localhost" :
-		used_ip = desired_ip
+	var used_ip = desired_ip
+	if used_ip == "localhost" :
+		used_ip = DEFAULT_IP
 	self_data.name = player_name
 	get_tree().connect("connected_to_server", self, "_connected_to_server")
 	get_tree().connect("connection_failed", self, "_connection_failed", [desired_ip])
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 	var peer = NetworkedMultiplayerENet.new()
-	peer.create_client(DEFAULT_IP, DEFAULT_PORT)
+	peer.create_client(used_ip, DEFAULT_PORT)
 	get_tree().set_network_peer(peer)
 
 func _connected_to_server():
@@ -53,3 +53,6 @@ func _connection_failed(desired_ip):
 func _server_disconnected():
 	print("server_disconnected")
 	get_tree().change_scene("res://scene/Menu_screen/TitleScreen.tscn")
+	get_tree().set_network_peer(null)
+	
+	
