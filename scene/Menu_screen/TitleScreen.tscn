@@ -10,9 +10,6 @@
 [node name="TitleScreen" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="Content" parent="Menu" index="1"]
-editor/display_folded = true
-
 [node name="Buttons" type="VBoxContainer" parent="Menu/Content" index="0"]
 margin_left = 220.0
 margin_top = 194.0
