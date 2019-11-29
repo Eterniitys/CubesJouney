@@ -10,6 +10,7 @@
 script = ExtResource( 2 )
 
 [node name="Buttons" type="VBoxContainer" parent="Menu/Content" index="0"]
+editor/display_folded = true
 margin_left = 220.0
 margin_top = 117.0
 margin_right = 820.0
@@ -33,8 +34,10 @@ valign = 1
 margin_left = 201.0
 margin_right = 398.0
 margin_bottom = 24.0
+focus_neighbour_bottom = NodePath("../../ConnectToServer")
 size_flags_horizontal = 3
 text = "localhost"
+clear_button_enabled = true
 
 [node name="Label2" type="Label" parent="Menu/Content/Buttons/IP" index="2"]
 margin_left = 402.0
