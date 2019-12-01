@@ -14,3 +14,6 @@ func _on_button_pressed(scene_to_load):
 
 func _on_QuitButton_pressed():
 	get_tree().quit()
+
+func _on_PlayNetworkButton_pressed():
+	NETWORK.play_on_network = true

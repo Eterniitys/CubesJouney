@@ -55,4 +55,5 @@ anchor_right = 0.0
 margin_top = 120.0
 margin_right = 600.0
 margin_bottom = 170.0
+[connection signal="pressed" from="Menu/Content/Buttons/PlayNetworkButton" to="." method="_on_PlayNetworkButton_pressed"]
 [connection signal="pressed" from="Menu/Content/Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
