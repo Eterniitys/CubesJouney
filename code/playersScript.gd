@@ -115,7 +115,7 @@ master func movements(delta):
 	else :
 		vel.x = 0
 		
-	var jump = Input.is_action_pressed(get_parent().get_node(name).get_jump())
+	var jump = Input.is_action_just_pressed(get_parent().get_node(name).get_jump())
 	
 	if carried and !get_parent().get_node(theOtherName).is_on_floor():
 		support_on_floor = false
@@ -159,7 +159,7 @@ func change_state(new_state):
 				$Sprite.frame = 1
 
 master func travers():
-	if   Input.is_action_pressed(get_parent().get_node(name).get_travers()):
+	if   Input.is_action_just_pressed(get_parent().get_node(name).get_travers()):
 		set_collision_mask_bit(5,false)
 	if  Input.is_action_just_released(get_parent().get_node(name).get_travers()):
 		set_collision_mask_bit(5,true)
