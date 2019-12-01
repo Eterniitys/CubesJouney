@@ -35,6 +35,7 @@ var network_id = 2
 puppet var puppet_position = Vector2.ZERO
 puppet var puppet_scale = Vector2(1,1)
 #puppet var puppet_velocity = Vector2.ZERO
+
 #
 func _ready():
 	puppet_position = position
@@ -64,9 +65,14 @@ func _physics_process(delta):
 	# Transform
 	if can_scale:
 		transform(delta)
-	# Shadow power
-	if is_network_master() and can_use_shadow and Input.is_action_just_pressed("shadow"):
-		rpc("call_shadow")
+		
+	if NETWORK.play_on_network:
+		# Shadow power
+		if is_network_master() and can_use_shadow and Input.is_action_just_pressed(get_parent().get_node(name).get_shadow()):
+			rpc("call_shadow")
+	elif can_use_shadow and Input.is_action_just_pressed(get_parent().get_node(name).get_shadow()):
+		call_shadow()
+		
 	# Going through tiles (allowing it)
 	travers()
 	
@@ -82,23 +88,19 @@ func _physics_process(delta):
 		move_with = true
 	
 	# Network
-	$name.text = str(network_id)
-	if is_network_master():
-		rset_unreliable("puppet_position", position)
-		rset_unreliable("puppet_scale", scale)
-#		rset_unreliable("puppet_velocity", vel)
-	else:
-		position = puppet_position
-		scale = puppet_scale
-#		vel = puppet_velocity
-	
-	if get_tree().is_network_server():
-		pass#NETWORK.update_datas(self.network_id, position, scale, vel)
+	if NETWORK.play_on_network:
+		$name.text = str(network_id)
+		if is_network_master():
+			rset_unreliable("puppet_position", position)
+			rset_unreliable("puppet_scale", scale)
+		else:
+			position = puppet_position
+			scale = puppet_scale
 
 #warning-ignore:unused_argument
 master func movements(delta):
-	var left = Input.is_action_pressed("left")
-	var right = Input.is_action_pressed("right")
+	var left = Input.is_action_pressed(get_parent().get_node(name).get_left())
+	var right = Input.is_action_pressed(get_parent().get_node(name).get_right())
 	var support_on_floor = is_on_floor()
 	
 	# direction
@@ -113,7 +115,7 @@ master func movements(delta):
 	else :
 		vel.x = 0
 		
-	var jump = Input.is_action_just_pressed("jump")
+	var jump = Input.is_action_pressed(get_parent().get_node(name).get_jump())
 	
 	if carried and !get_parent().get_node(theOtherName).is_on_floor():
 		support_on_floor = false
@@ -157,21 +159,21 @@ func change_state(new_state):
 				$Sprite.frame = 1
 
 master func travers():
-	if Input.is_action_just_pressed("travers"):
+	if   Input.is_action_pressed(get_parent().get_node(name).get_travers()):
 		set_collision_mask_bit(5,false)
-	if Input.is_action_just_released("travers"):
+	if  Input.is_action_just_released(get_parent().get_node(name).get_travers()):
 		set_collision_mask_bit(5,true)
 
 #warning-ignore:unused_argument
 master func transform(delta):
-	if Input.is_action_just_pressed("transform_down") and is_on_floor() and (scale.y < 0.5) :
+	if Input.is_action_just_pressed(get_parent().get_node(name).get_transform_down()) and is_on_floor() and (scale.y < 0.5) :
 		vel.y = -200
 	
-	if Input.is_action_pressed("transform_down"):
+	if Input.is_action_pressed(get_parent().get_node(name).get_transform_down()):
 		scale.x = lerp (scale.x, scale_down_x, scale_speed)
 		scale.y = lerp (scale.y, scale_down_y, scale_speed)
 	
-	if Input.is_action_pressed("transform_up"):
+	if Input.is_action_pressed(get_parent().get_node(name).get_transform_up()):
 		scale.x = lerp (scale.x, scale_up_x, scale_speed)
 		scale.y = lerp (scale.y, scale_up_y, scale_speed)
 

@@ -19,12 +19,11 @@ func _ready():
 	LIFELINE.set_checkpoint_cuba($initial)
 	LIFELINE.set_checkpoint_cubi($initial)
 	spawn_items()
-
-	for peer_id in NETWORK.players:
-		#print(NETWORK.players[peer_id].name +" -> " + str(NETWORK.players[peer_id].network_id))
-		var player = get_node("Players").get_node(NETWORK.players[peer_id].name)
-		player.set_network_master(NETWORK.players[peer_id].network_id)
-		player.network_id = NETWORK.players[peer_id].network_id
+	if NETWORK.play_on_network:
+		for peer_id in NETWORK.players:
+			var player = get_node("Players").get_node(NETWORK.players[peer_id].name)
+			player.set_network_master(NETWORK.players[peer_id].network_id)
+			player.network_id = NETWORK.players[peer_id].network_id
 
 func spawn_items():
 	var tm = $TileMaps/item_tiles

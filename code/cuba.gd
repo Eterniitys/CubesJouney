@@ -1,6 +1,43 @@
 extends "res://code/playersScript.gd"
 #warning-ignore-all:unused_argument
 
+
+func get_left():
+	if NETWORK.play_on_network:
+		return "left"
+	else:
+		return "left_cuba"
+func get_right():
+	if NETWORK.play_on_network:
+		return "right"
+	else:
+		return "right_cuba"
+func get_jump():
+	if NETWORK.play_on_network:
+		return "jump"
+	else:
+		return "jump_cuba"
+func get_travers():
+	if NETWORK.play_on_network:
+		return "travers"
+	else:
+		return "travers_cuba"
+func get_shadow():
+	if NETWORK.play_on_network:
+		return "shadow"
+	else:
+		return "shadow_cuba"
+func get_transform_up():
+	if NETWORK.play_on_network:
+		return "transform_up"
+	else:
+		return "transform_up_cuba"
+func get_transform_down():
+	if NETWORK.play_on_network:
+		return "transform_down"
+	else:
+		return "transform_up_down"
+
 func prepare_scale():
 	scale_up_x = 1/float(3)
 	scale_up_y = 3
@@ -17,7 +54,7 @@ remotesync func call_shadow():
 	shadow.position = position
 
 remote func _cubi_wanna_jump():
-	if !is_network_master():
+	if NETWORK.play_on_network && !is_network_master():
 		rpc("_cubi_wanna_jump")
 	if carried :
 		vel.y = -JUMP_HEIGH

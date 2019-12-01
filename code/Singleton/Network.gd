@@ -8,6 +8,7 @@ var actual_scene = ""
 var players = {}
 #new player info
 var self_data = {name = '', network_id = 1}
+var play_on_network
 signal data_ready
 
 func create_server(player_name):
