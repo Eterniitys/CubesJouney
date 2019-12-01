@@ -36,7 +36,7 @@ func get_transform_down():
 	if NETWORK.play_on_network:
 		return "transform_down"
 	else:
-		return "transform_up_down"
+		return "transform_down_cuba"
 
 func prepare_scale():
 	scale_up_x = 1/float(3)
