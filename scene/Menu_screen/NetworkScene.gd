@@ -1,6 +1,7 @@
 extends Control
 
 func _ready():
+	$Menu/Content/Buttons.get_children()[1].grab_focus()
 	var btn_return = $Menu/Content/Buttons/ReturnMenuButton
 	btn_return.connect("pressed", self, "_on_ButtonReturn_pressed", [btn_return.next_scene])
 
