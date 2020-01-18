@@ -1,5 +1,7 @@
 extends Node2D
 
+var paused = false
+		
 onready var items = {
 	"checkpoint" : preload("res://scene/prefab/checkpoint.tscn"),
 	"death_zone": preload("res://scene/prefab/deadZone.tscn"),
@@ -14,6 +16,8 @@ onready var items = {
 }
 
 func _ready():
+	#add_child(menu)
+	#menu.get_node("PauseScreen").visible = false
 	NETWORK.actual_scene = get_path()
 	get_node("Players").position = $initial.position
 	LIFELINE.set_checkpoint_cuba($initial)
@@ -37,3 +41,11 @@ func spawn_items():
 			i.init(name, pos)
 			add_child(i)
 	tm.visible = false
+	
+func _process(delta):
+	if Input.is_action_just_pressed("pause"):
+		var menu = load("res://scene/Menu_screen/PauseSceen.tscn").instance()
+		add_child(menu)
+	
+	
+	

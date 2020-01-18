@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scene/Menu_screen/PauseSceen.gd" type="Script" id=1]
+[ext_resource path="res://scene/Menu_screen/Menu.gd" type="Script" id=2]
+[ext_resource path="res://scene/Menu_screen/buttons/HubButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scene/levels/Level01.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scene/Menu_screen/buttons/ReturnMenuButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scene/Menu_screen/buttons/QuitButton.tscn" type="PackedScene" id=6]
+
+[node name="PauseScreen" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="PauseScreen" type="ColorRect" parent="."]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.784314 )
+
+[node name="Content" type="CenterContainer" parent="PauseScreen"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 100.0
+margin_right = -100.0
+margin_bottom = -100.0
+
+[node name="Menu" type="VBoxContainer" parent="PauseScreen/Content"]
+margin_left = 240.0
+margin_top = 175.0
+margin_right = 840.0
+margin_bottom = 345.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+script = ExtResource( 2 )
+
+[node name="HubButton" parent="PauseScreen/Content/Menu" instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_right = 600.0
+margin_bottom = 50.0
+next_scene = ExtResource( 4 )
+
+[node name="ReturnMenuButton" parent="PauseScreen/Content/Menu" instance=ExtResource( 5 )]
+anchor_right = 0.0
+margin_top = 60.0
+margin_right = 600.0
+margin_bottom = 110.0
+
+[node name="QuitButton" parent="PauseScreen/Content/Menu" instance=ExtResource( 6 )]
+anchor_right = 0.0
+margin_top = 120.0
+margin_right = 600.0
+margin_bottom = 170.0
+[connection signal="paused_action" from="PauseScreen/Content/Menu" to="." method="_on_Menu_paused_action"]
+[connection signal="pressed" from="PauseScreen/Content/Menu/QuitButton" to="." method="_on_QuitButton_pressed"]
